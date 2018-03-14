@@ -45,4 +45,5 @@ Miről szól a dolgozat.
 * OpenCV O'Reilly-s könyv
 * C képfeldolgozásos könyv
 * Transzformációkhoz, szűrésekhez irodalmak
+* https://github.com/tobybreckon/c-examples-ipcv
 
