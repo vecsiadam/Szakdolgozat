@@ -1,0 +1,46 @@
+\documentclass[a4paper,12pt]{article}
+
+% Set margins
+\usepackage[hmargin=3cm, vmargin=3cm]{geometry}
+
+\frenchspacing
+
+% Language packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[magyar]{babel}
+
+% AMS
+\usepackage{amssymb,amsmath}
+
+% Graphic packages
+\usepackage{graphicx}
+
+% Colors
+\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+
+% Enumeration
+\usepackage{enumitem}
+
+% Links
+\usepackage{hyperref}
+
+\linespread{1.2}
+
+\begin{document}
+
+\pagestyle{empty}
+
+\section*{Összegzés}
+
+\textit{Gábori Péter Márk: Éttermi rendelésnyilvántartó rendszer}
+
+\bigskip
+
+A szakdolgozatom célja egy olyan webalkalmazás készítése volt, amellyel éttermek és rendelések adatait lehet nyilvántartani. Célom volt a felhasználók számára egy egyszerű, letisztult, felhasználóbarát felület kialakítása, amelyen szűrési lehetőségek segítségével könnyen el lehet navigálni az éttermek kínálatai között. Fontos szempont volt az étteremtulajdonosok munkájának megkönnyítése, az éttermek menedzselésének a leegyszerűsítése is. Az adatokat SQL alapú relációs adatbázisban tárolom, amelyhez a keretrendszer SQLAlchemy ORM-en keresztül csatlakozik. Az alkalmazásom megvalósításához szerveroldalon Python/Flask keretrendszert használtam, míg a kliensoldali megvalósítás AngularJS segítségével történt.
+
+Az alkalmazás a jelenlegi állapotában működőképes, a tervezett funkcionalitásokat sikeresen implementáltam. Számos ötlet összegyűlt a dolgozat megírása soran az alkalmazás későbbi továbbfejlesztéséhez. Az egyik ezek közül az ajánlórendszer megvalósítása, amelynek a részletei a dolgozat második fejezetében már kifejtésre kerültek. Egy további ötlet, egy nyersanyag nyilvántartó rendszer bevezetése az alkalmazásba. Az étterem tulajdonosoknak lehetőségük lenne az ételek készítéséhez használt nyersanyag készletük nagyságát felvinni az adatbázisba. Amikor valamelyik nyersanyag készleten lévő darabszáma egy előre meghatározott kritikus érték alá csökken, a rendszer figyelmeztető üzenetet küldene a tulajdonos számára. Hasznos lenne még a rendelési statisztikák és elemzések bővítése is.
+
+\end{document}
+
