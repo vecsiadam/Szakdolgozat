@@ -46,4 +46,5 @@ Miről szól a dolgozat.
 * C képfeldolgozásos könyv
 * Transzformációkhoz, szűrésekhez irodalmak
 * https://github.com/tobybreckon/c-examples-ipcv
-
+* http://www.askaswiss.com/2016/01/how-to-create-cartoon-effect-opencv-python.html
+* http://www.askaswiss.com/2016/01/how-to-create-pencil-sketch-opencv-python.html
