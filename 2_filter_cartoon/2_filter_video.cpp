@@ -51,6 +51,7 @@ int main(int argc, char** argv)
 void cartoon(Mat img_rgb){
     // downsample image using Gaussian pyramid
     Mat img_color = img_rgb;
+    Mat img_res;
     
     for(int i=0; i < 2;i++){
         pyrDown( img_color,img_color);
@@ -58,7 +59,10 @@ void cartoon(Mat img_rgb){
     
     // repeatedly apply small bilateral filter instead of
     // applying one large filter
-    //   bilateralFilter ( img_color, img_color, 9, 9, 7 );
+    for(int i=0; i < 7;i++){
+        bilateralFilter ( img_color, img_res, 9, 9.0, 7.0 );
+    }
+    
     
     
     // upsample image to original size

@@ -6,6 +6,7 @@ g++ 2_filter_video.cpp -lm -w $(pkg-config --libs opencv) -o 2_filter_video
 
 Steps:
 	- Down sample image Gaussian pyramid
+	- Use bilateral filter
 	- Up sample image Gaussian pyramid
 	- Convert sample image BRG to GRAY
 	- Median blur

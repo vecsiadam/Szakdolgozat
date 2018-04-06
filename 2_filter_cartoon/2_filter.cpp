@@ -28,10 +28,11 @@ int main(int argc, char** argv)
     //namedWindow("median", 1);
     //namedWindow("adaptivethreshold", 1);
 
-    
-    
+
     // downsample image using Gaussian pyramid
     Mat img_color = img_rgb;
+    Mat img_res;
+
    
     for(int i=0; i < 2;i++){
     pyrDown( img_color,img_color);
@@ -39,12 +40,13 @@ int main(int argc, char** argv)
     
     // repeatedly apply small bilateral filter instead of
     // applying one large filter
-     //  bilateralFilter ( img_color, img_color, 9, 9, 7 );
-    
+    for(int i=0; i < 7;i++){
+    bilateralFilter ( img_color, img_res, 9, 9.0, 7.0 );
+    }
     
     // upsample image to original size
     for(int k=0; k < 2;k++){
-        pyrUp( img_color,img_color);
+        pyrUp( img_res,img_res);
     }
     
     // convert to grayscale and apply median blur
@@ -60,14 +62,15 @@ int main(int argc, char** argv)
     // convert back to color, bit-AND with color image
     cvtColor(img_edge, img_edge, CV_GRAY2RGB);
     Mat img_cartoon;
-    bitwise_and(img_color,img_edge,img_cartoon);
+    bitwise_and(img_res,img_edge,img_cartoon);
+    
+    imwrite( "Cartoon_filter.jpg", img_cartoon );
     
     // display
     imshow("original", img_rgb);
     imshow("cartoon", img_cartoon);
     //imshow("median", img_blur);
     //imshow("adaptivethreshold", img_edge);
-
 
     // Wait until user press some key
     waitKey(0);
