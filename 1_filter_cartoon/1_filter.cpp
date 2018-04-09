@@ -26,21 +26,24 @@ int main(int argc, char** argv)
 
     Mat srcGray;
     cvtColor(img, srcGray, CV_BGR2GRAY);
-    
+
     // Remove the pixel noise with a good Median filter, before we start detecting edges.
     medianBlur(srcGray, srcGray, 7);
     
     Size size = img.size();
     Mat mask = Mat(size, CV_8U);
     Mat edges = Mat(size, CV_8U);
-
+    
     // Generate a nice edge mask, similar to a pencil line drawing.
     Laplacian(srcGray, edges, CV_8U, 5);
-    threshold(edges, mask, 80, 255, THRESH_BINARY_INV);
     
+    threshold(edges, mask, 90, 255, THRESH_BINARY_INV);
+
     
     memset((char*)dst.data, 0, dst.step * dst.rows);
     img.copyTo(dst, mask);
+ 
+    imwrite( "Cartoon1_filter1.jpg", dst );
 
     
     imshow("cartoon1", dst);
