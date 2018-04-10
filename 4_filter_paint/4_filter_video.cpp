@@ -11,7 +11,7 @@
 using namespace std;
 using namespace cv;
 
-void cartoon(Mat img_color);
+void paint(Mat img_color);
 
 int main(int argc, char** argv)
 {
@@ -34,7 +34,7 @@ int main(int argc, char** argv)
         
         resize(frame, frame, Size(frame.cols/2, frame.rows/2));
 
-        cartoon(frame);
+        paint(frame);
 
         // Wait until user press some key
         if(waitKey(30) >= 0) break;
@@ -48,45 +48,18 @@ int main(int argc, char** argv)
     return 0;
 }
 
-void cartoon(Mat img_color){
-
+void paint(Mat img_color){
     Mat img_rgb = img_color;
     
-    Mat img_gray;
-    Mat img_edges;
-    
-    Mat kernel;
-    Point anchor;
-    double delta;
-    int ddepth;
-    int kernel_size;
-    
-    anchor = Point( -1, -1 );
-    delta = 0;
-    ddepth = -1;
-    
-    cvtColor(img_rgb,img_gray, CV_BGR2GRAY);
-    blur(img_gray,img_edges,Size(15,15));
-    Canny(img_edges,img_edges, 50, 150,3);
-    
-    int ind = 0;
-    kernel_size = 3 + 2*( ind%5 );
-    kernel = Mat::ones( kernel_size, kernel_size, CV_32F )/ (float)(kernel_size*kernel_size);
-    
-    filter2D(img_edges,img_edges, ddepth , kernel, anchor, delta, BORDER_DEFAULT );
-    threshold(img_edges,img_edges, 50, 255, 0);
-    
-    cvtColor(img_edges,img_edges, CV_GRAY2BGR);
-    
+    blur(img_rgb,img_rgb,Size(3,3));    
     Mat img_shifted;
-    pyrMeanShiftFiltering(img_rgb,img_shifted, 5, 20);
-    
-    Mat img_comic;
-    subtract(img_rgb, img_edges,img_comic);
+    pyrMeanShiftFiltering(img_rgb,img_shifted, 10, 30);
     
     
     imshow("original", img_rgb);
     imshow("paint", img_shifted);
+    
+    
     
     
     return ;
