@@ -37,7 +37,6 @@ int main(int, char**)
     return 0;
 }
 void paint(Mat img_color){
-    // downsample image using Gaussian pyramid
     Mat img_rgb = img_color;
     
     Mat img_gray;
@@ -54,7 +53,7 @@ void paint(Mat img_color){
     ddepth = -1;
     
     cvtColor(img_rgb,img_gray, CV_BGR2GRAY);
-    blur(img_gray,img_edges,Size(3,3));
+    blur(img_gray,img_edges,Size(15,15));
     Canny(img_edges,img_edges, 50, 150,3);
     
     int ind = 0;
