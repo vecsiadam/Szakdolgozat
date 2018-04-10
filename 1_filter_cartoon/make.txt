@@ -3,6 +3,7 @@ g++ 1_filter.cpp -lm -w $(pkg-config --libs opencv) -o 1_filter
 
 g++ 1_filter_video.cpp -lm -w $(pkg-config --libs opencv) -o 1_filter_video
 
+g++ 1_filter_live.cpp -lm -w $(pkg-config --libs opencv) -o 1_filter_live
 
 
 Steps:

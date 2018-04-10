@@ -41,7 +41,9 @@ int main(int argc, char** argv)
     Mat img_blur;
     GaussianBlur(img_gray, img_blur,Size(21, 21),0, 0);
     Mat img_blend;
+    
     divide(img_gray,img_blur,img_blend,245);
+    
     normalize(img_blend, img_blend, 0, 255, CV_MINMAX);
 
     cvtColor(canvas,canvas, CV_BGR2GRAY);
@@ -51,7 +53,7 @@ int main(int argc, char** argv)
 
     //cvtColor(img_blend,img_blend, CV_GRAY2RGB);
     
-    
+     imwrite( "pencil_sketch.jpg", img_blend );
     // display
     //imshow("gray", img_gray);
     //imshow("gray inv", img_gray_inv);
