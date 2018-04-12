@@ -1,4 +1,33 @@
 % !TEX encoding = UTF-8 Unicode
-
+%10-15 oldal
 \Chapter{Matematikai és szoftveres eszközök}
 
+\Section{Zaj szűréshez, elmosáshoz használatos szűrők}
+\SubSection{Átlagoló szűrő}
+A képpontok közelebb kerülnek a környezetük átlagához, az az a kép "simább" lesz.
+\SubSection{Gauss szűrő}
+Gaussian blurring is a linear operation. However, it does not preserve edges in the input image - the value of sigma governs the degree of smoothing, and eventually how the edges are preserved.
+\SubSection{Medián szűrő}
+The Median filter is a non-linear filter. Unlike linear filters, median filters replace the pixel values with the median value available in the local neighborhood (say, 5x5 or 3x3 pixels around the central pixel value). Also, median filter is edge preserving (the median value must actually be the value of one of the pixels in the neighborhood). This is probably a good read:
+https://arxiv.org/pdf/math/0612422.pdf
+\SubSection{Kétoldalú szűrő}
+Bilateral filter is a non-linear filter. It prevents averaging across image edges, 
+\Section{Éldetektálási módszerek}
+\SubSection{Laplace operátor}
+Unlike the Sobel edge detector, the Laplacian edge detector uses only one kernel. It calculates second order derivatives in a single pass. Here's the kernel used for it:
+\SubSection{Sobel operátor}
+The Sobel edge detector is a gradient based method. It works with first order derivatives. It calculates the first derivatives of the image separately for the X and Y axes. The derivatives are only approximations (because the images are not continuous). To approximate them, the following kernels are used for convolution:
+\SubSection{Canny éledeteltálás}
+The Canny edge detector is an edge detection operator that uses a multi-stage algorithm to detect a wide range of edges in images. It was developed by John F. Canny in 1986. Canny also produced a computational theory of edge detection explaining why the technique works.
+\Section{Küszöbölés}
+Thresholding is the simplest method of image segmentation. From a grayscale image, thresholding can be used to create binary images (Shapiro, et al. 2001:83).
+\definition{The simplest thresholding methods replace each pixel in an image with a black pixel if the image intensity $I_{i,j}$ is less than some fixed constant $T$ (that is, $I_{{i,j}}<T$), or a white pixel if the image intensity is greater than that constant. In the example image on the right, this results in the dark tree becoming completely black, and the white snow becoming completely white.}
+\SubSection{Izodata algoritmus (Yanni)}
+\SubSection{Otsu algoritmus}
+\SubSection{Niblack algoritmus}
+\SubSection{Adaptív küszöbölés}
+Whereas the conventional thresholding operator uses a global threshold for all pixels, adaptive thresholding changes the threshold dynamically over the image. This more sophisticated version of thresholding can accommodate changing lighting conditions in the image, e.g. those occurring as a result of a strong illumination gradient or shadows.
+
+Adaptive thresholding typically takes a grayscale or color image as input and, in the simplest implementation, outputs a binary image representing the segmentation. For each pixel in the image, a threshold has to be calculated. If the pixel value is below the threshold it is set to the background value, otherwise it assumes the foreground value.
+\Section{Szegmentálás}
+\SubSection{Mean shift algoritmus}
