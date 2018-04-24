@@ -45,12 +45,12 @@ A paraméterek megegyeznek az Edge Preserving filter paramétereivel.
 \label{fig:detailEnhance}
 \end{figure}
 \SubSection{Pencil sketch filter}
-Ez a szűrő ceruca rajzot eredményez, két féle képet eredményez egy színes képet és egy szürkeárnyalatosat.
+Ez a szűrő ceruza rajzot eredményez, két féle képet eredményez egy színes képet és egy szürkeárnyalatosat.
 \begin{cpp}
 pencilSketch(Mat src, Mat dst_gray, Mat dst_color, float sigma_s=60, 
 		float sigma_r=0.07f, float shade_factor=0.02f);
 \end{cpp}
-A paraméterek megegyeznek az Edge Preserving szürőével, de bővül egy paraméterrel a\\
+A paraméterek megegyeznek az Edge Preserving szűrőével, de bővül egy paraméterrel.\\
 \indent \textbf{shade\_factor}  ami egy 0 és 0,1 közötti érték, a kimeneti képintenzitás skálázása. Minél magasabb az érték, annál fényesebb az eredmény.
 \begin{figure}[ht]
 \centering
@@ -72,7 +72,7 @@ A paraméterek megegyeznek az Edge Preserving filter paramétereivel.
 \end{figure}
 %https://www.learnopencv.com/non-photorealistic-rendering-using-opencv-python-c/
 \Section{Saját szűrők implementációja OpenCV és C++-al}
-Ebben a fejezetben szeretném bemutatni a saját szűrőknek a C++ implementációját és a paramétereket amiket használtam hozzájuk. Itt képekkel nem fogok illusztrálni, mert azok a \textbf{3. fejezetben} megtalálhatóak. \\ Elsőként bemutatnám a kép betöltésének implementációját, amit minden szűrőn használtam.
+Ebben a fejezetben szeretném bemutatni a saját szűrőknek a C++ implementációját és a paramétereket amiket használtam hozzájuk. Itt képekkel nem fogok illusztrálni, mert azok a \textbf{4. fejezetben} megtalálhatóak. \\ Elsőként bemutatnám a kép betöltésének implementációját, amit minden szűrőn használtam.
 \begin{cpp}
     Mat img = imread("image.jpg"); // bemeneti kep
     Mat dst ; //kimeneti kep
@@ -108,7 +108,7 @@ Gauss piramisban lefelé lépünk kettőt.
 ahol, \\
 \indent \textbf{img}: a bemeneti színes kép,\\
 \indent \textbf{img}: a kimeneti kicsinyített színes kép.\\\\
-Egymás után 7 szer hajtjuk végre a kétoldalú szűrőt.\\
+Egymás után 7 szer hajtjuk végre a kétoldalú szűrőt.
 \begin{cpp}
 Mat img_res;
 int d = 9;
