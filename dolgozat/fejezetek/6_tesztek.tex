@@ -6,78 +6,56 @@ Azokat a szűrőket amelyeket a \textbf{4. fejezet}ben tárgyaltam, nem csak ké
 
 \noindent Először a technikai adatait szeretném leírni a számítógépnek amin írtam és futtattam a programokat. Ez egy MacBook Pro  2014 mid, 2.6 GHz Intel Core i5 processzorral, 8 gb memóriával, Intel Iris 1536 MB grafikus kártyával és macOS High Sierra operációs rendszerrel.
 \Section{Szűrők tesztelése képeken}
-Először képeken teszteltem a szűrőimet, azokon a képeken amiket más a \textbf{3. fejezetben} bemutattam. Az első tesztekben azt mutatom meg, hogy mennyi milliszekundum alatt készül el a kép és melyik művelet mennyi ideig tart, természetesen milliszekundumban mutatom meg aztokat is.\\\\
+Elsőként képeken teszteltem a szűrőimet, azokon a képeken amiket már a \textbf{4. fejezet}ben bemutattam. Az első tesztekben azt mutatom meg, hogy mennyi milliszekundum alatt készül el a kép és melyik művelet mennyi ideig tart, természetesen milliszekundumban mutatom meg aztokat is.\\\\
 \textbf{Cartoon-style filter}\\\\
-Ennél a filternél a teljes képfeldolgozási idő: 89,485 ms\\
-amiből,\\
-Kép betöltés: 4,714 ms\\
-Gauss piramisban a kép kicsinyítése: 1.153 ms\\
-A kétoldalú szűrő: 21,757 ms\\
-Gauss piramisban a kép nagyitása normál méretre: 1,467 ms\\
-A kép konvertálása színesből szürkernyalatossá valamint a medián szűrés: 8,902 ms\\
-Az adaptív küszöbölés: 0,837 ms\\
-A bitwise\_and függvény: 0,525 ms
-\newpage
-\begin{figure}[ht]
-\centering
-\epsfig{file=kepek/cartoon_style_test.png,scale=0.3}
-\caption{Grafikonon ábrázolva a Cartoon-style filter feldolgozási ideje} 
-\label{fig: graf1}
-\end{figure}
-\noindent Látható, hogy ha össze adjuk külön külön a függvények feldolgozási idejét akkor, $4,714+1,153+21,757+1,467+8,902+0,837+0,525=39.355$ ms-t kapunk, ami nem egyezik meg a 89,485 ms-os teljes kép feldolgozással. Ez a különbség annak tudható be, hogy még néhány művelet például, néhány deklarálás nincs benne, valamint azok a függvények sem amivel magát a teszteket végeztem és azok kiíratásuk, ha külön külön nézzük a függvényeket. \\ \\
-%grafikon-https://beam.venngage.com
+Image loading time ms: 4.795\\
+Creating windows time in ms: 48.967\\
+Gaussian pyramid down in ms: 1.114\\
+Bilateral filter time in ms: 22.23\\
+Gaussian pyramid up time in ms: 1.387\\
+Convert rgb img to gray and median filter  time in ms: 8.844\\
+Adaptive threshold time in ms: 1.077\\
+Convert back to color, bit-AND time in ms: 2.813\\
+Write and show images time in ms: 21.723\\
+Image processing time in ms: 113.229\\\\
 \textbf{Pencil sketch filter}\\\\
-Ennél a filternél a teljes képfeldolgozási idő: 70,016 ms\\
-amiből,\\
-Kép betöltés: 9,737 ms\\
-Medián szűrő: 1,417 ms\\
-Gauss szűrő: 7,863 ms\\
-Gauss szűrő és a medián szűrő elosztása: 0,436 ms\\
-Kontraszt széthúzás : 0,147 ms\\
-Az adaptív küszöbölés: 1,944 ms\\\\
-\begin{figure}[ht]
-\centering
-\epsfig{file=kepek/pencil_sketch_test.png,scale=0.3}
-\caption{Grafikonon ábrázolva a Pencil sketch filter feldolgozási ideje} 
-\label{fig: graf2}
-\end{figure}
-\noindent Itt is látható, hogy ha össze adjuk külön külön a függvények feldolgozási idejét akkor, $9,737+1,417+7,863+0,436+0,147+1,944=21.544$ ms-t kapunk, ami nem egyezik meg a 70,016 ms-os teljes kép feldolgozással. \\ \\
-%grafikon-https://beam.venngage.com
+Image loading time in ms: 9.775\\
+Creating a window time in ms: 51.585\\
+Convert rgb iamge to gray and median filter time in ms: 1.495\\
+Gaussian filter time in ms: 9.691\\
+Gaussian filter and median filter divide time in ms: 0.476\\
+Contrast strech time in ms: 0.168\\
+Multiply the canvas and the smooth image time in ms: 2.793\\
+Write and show images time in ms: 17.503\\
+Image processing time in ms: 93.661\\\\
 \textbf{Cartoon filter}\\\\
-Ennél a filternél a teljes képfeldolgozási idő: 66,614 ms\\
-amiből,\\
-Kép betöltés: 4,937 ms\\
-Medián szűrő: 9,892 ms\\
-Laplace éldetektálás: 1,193 ms\\
-Küszöbölés: 0,436 ms\\
-Kontraszt széthúzás : 0,371 ms\\
-Maszk másolása a képre: 0,987 ms\\\\
-\begin{figure}[ht]
-\centering
-\epsfig{file=kepek/cartoon_test.png,scale=0.24}
-\caption{Grafikonon ábrázolva a Cartoon  filter feldolgozási ideje} 
-\label{fig: graf3}
-\end{figure}
-\noindent Itt is látható, hogy ha össze adjuk külön külön a függvények feldolgozási idejét akkor, $4,937+9,892+7,863+0,436+0,371+0,987=24,486$ ms-t kapunk, ami nem egyezik meg a 66,614 ms-os teljes kép feldolgozással. \\ \\
-%grafikon-https://beam.venngage.com
-\newpage
-\textbf{Aquarelle-style filter}\\
-Ennél a filternél a teljes képfeldolgozási idő: 524,863 ms\\
-amiből,\\
-Kép betöltés: 6,476 ms\\
-Medián szűrő: 0,88 ms\\
-Maszk másolása a képre: 467,275 ms\\\\
-\begin{figure}[ht]
-\centering
-\epsfig{file=kepek/aquarelle_style_test.png,scale=0.24}
-\caption{Grafikonon ábrázolva a Aquarelle-style filter feldolgozási ideje} 
-\label{fig: graf4}
-\end{figure}
-\noindent Itt is látható, hogy ha össze adjuk külön külön a függvények feldolgozási idejét akkor, $6,476+0,88+467,275=474.631$ ms-t kapunk, ami nem egyezik meg a 524,863 ms-os teljes kép feldolgozással.
-%grafikon-https://beam.venngage.com
+Image loading time in ms: 4.959\\
+Create windows time in ms: 51.136\\
+Median filtering time in ms: 9.916\\
+Laplacian edge detectation time in ms: 0.961\\
+Thresholding time in ms: 0.467\\
+Copy mask to the image time in ms: 0.838\\
+Write and show images time in ms: 19.56\\
+Image processing time in ms: 88.059\\\\
+\textbf{Aquarelle-style filter}\\\\
+Image loading time in ms: 6.432\\
+Creating windows time in ms: 50.489\\
+Avarage blur time in ms: 1.26\\
+Mean shift segmentation time in ms: 483.213\\
+Write and show image time in ms: 13.407\\
+Image processing time in ms: 554.927
 \Section{Szűrők tesztelése videókon és valós időben}
+Ebben a részben, a videók valamint az élő kép feldolgozási idejét mérem képkocka per másodpercben, azaz fps-ben. Illetve az esetleges képi hibákról és azok kijavításási lehetőségeiről ejtek néhány szót.
+\newpage
+\noindent\textbf{Cartoon-style filter}\\\\
+Ha futtatjuk az első filtert, látható, hogy a videó képe vibrál néhány pontban. Ezeket kilehet javítani, ha veszünk egy bizonyos kernel méretet és megvizsgáljuk, látjuk hogy a kernelen belül a színek túl nyomó többségben megegyeznek, viszont van néhány pont ami fekete, akkor a fekete pontokat átállítjuk olyan színüre, ami többségben van a kernelen belül. A videóknál, valamint a valós idejű feldolgozásnál mértem képkocka per másodpercet is. Látszik, hogy nem éri el a 24 fps-t sem a videó, sem a kamera képe ennél a szűrőnél. Azért 24 fps mivelt azt már az emberi szem folyamatosnak érzékeli, itt viszont kissé lassabb a kép. A méréseim alapján a videókon átlagosan 15-16 közötti képkocka szám van, a kamera képén 12-15. \\\\
+\textbf{Pencil sketch filter}\\\\
+Számításaim alapján ez a szűrő volt az, ami már a videókon majdnem elérte a kellő fps számot, hogy folyamatos legyen. Itt videókon 20-21 között volt a képkocka szám, valós időben pedig 15-16. Itt nem volt annyira sok az egyes műveletek számítási ideje.\\\\
+\textbf{Cartoon filter}\\\\
+Erről a szűrőről is elmondható ugyan az mint a Cartoon-style filterről, hogy a kép vibrál. Itt is alkalmazható lehetne az a megoldás, amit ott már leírtam. Itt a képkocka szám másodpercenként a videókban 17-18 között volt, valós időben 13-14 között.\\\\
+\textbf{Aquarelle-style filter}\\\\
+Mint látható a képernyőnkön, ha futtatjuk a programot videóval vagy a saját kameránk képével eléggé "szaggat", vagyis a képkocka szám per másodperc, nagyon alacsony. Láthatjuk, hogy az előző képi tesztekben is ennek a szűrőnek volt a legnagobb feldolgozási ideje. A mean shift szegmentáció olyan mértékű számítás igényt jelent a programnak, hogy nem tudja teljesíteni a kívánt fps számot a számítógépem. Itt átlagosan a videón 3,2-3,5 közötti képkocka számot mértem, élő képen 2,5-2,8.
 
 
-
-
+%FPS counter - https://ariandy1.wordpress.com/2013/02/19/calculating-fps-in-opencv-for-live-capture/
 %4-6 oldal

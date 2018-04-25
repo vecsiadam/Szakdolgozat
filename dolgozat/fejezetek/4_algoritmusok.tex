@@ -19,20 +19,19 @@ Első lépésben az eredeti képet lekicsinyítettem Gauss-piramis segítségév
 \label{fig: cartoon2}
 \end{figure}
 
-\SubSection{Medián szűrő}
-
-% TODO: Megemlíteni, hogy van néhány alternatíva a szürkeárnyalatos kép konvertálásához http://www.tannerhelland.com/3643/grayscale-image-algorithm-vb6/ . Itt az OpenCV-s beépített változat került felhasználásra.
-
-Ebben a lépésben először az előzőleg kapott elmosott, színes képet átkonvertáltam szürkeárnyalatos képpé. Ennek eredményeként kapott képen medián szűrést hajtottam végre, amit ismét zajcsökkentés miatt alkalmaztam. Így a kép már teljesen el van mosva, egyre jobban cartoon hatása van.
+\SubSection{Színek konvertálása, medián szűrő}
+Ebben a lépésben először az előzőleg kapott elmosott, színes képet átkonvertáltam szürkeárnyalatos képpé. 
+Itt kiszeretnék térni egy kicst magára a színes kép szürkeárnyalatossá konvertálására, mert eddig a dolgozatomban nem került szóba. Több féle megoldás létezik, ebből párat megemlítenék, az egyik az RGB komponensek átlagolása, de ez az emberi szem számára pontatlan, mivel nem egyformán érzzékel minden színt. A következő megoldás amit az OpenCV- beépített színkonvertálása is használ az, hogy minden színkomponenst súlyoz. A harmadik megoldás pedig, HSV színrendszerben alakítja át a képet szűrkeárnyalatossá. Ebben az esetben az OpenCV-s beépített kovertálást használtam a súlyok pedig a következők: 
+$$\text{RGB to Gray} = 0.299\cdot R+0.587\cdot G+0.114\cdot B.$$ 
+Ennek eredményeként kapott képen medián szűrést hajtottam végre, amit ismét zajcsökkentés miatt alkalmaztam. Így a kép már teljesen el van mosva, egyre jobban cartoon hatása van.
 \begin{figure}[ht]
 \centering
 \epsfig{file=kepek/graymedian.jpg,scale=0.45}
 \caption{Szürkére átalakított kép medián szűrővel } 
 \label{fig: cartoon3}
 \end{figure}
-
+\newpage
 \SubSection{Adaptív küszöbölés az élek kiemelésére}
-
 Az adaptív küszöbérték általában szürkeárnyalatos vagy színes képet ad bemenetként, és a legegyszerűbb megvalósításban bináris képet jelenít meg. A kép minden egyes képpontjára egy küszöbértéket kell kiszámítani. Ha a képpontérték a küszöbérték alatt van, akkor a háttérértékre van állítva, ellenkező esetben az előtérbe kerül.
 \begin{figure}[ht]
 \centering
@@ -133,7 +132,7 @@ Ennél a filternél a Laplace éldetektálást választottam, azért ezt a móds
 Az éldetektálás után, alkalmaztam egy küszöbölést amivel létrejött egy maszk, amit összeraktam az eredeti képpel.
 \begin{figure}[ht]
 \centering
-\epsfig{file=kepek/Cartoon1_thresh.jpg,scale=0.48}
+\epsfig{file=kepek/Cartoon1_thresh.jpg,scale=0.4}
 \caption{Küszöbölés  } 
 \label{fig:  2_cartoon4}
 \end{figure}

@@ -1,0 +1,7 @@
+
+g++ 4_filter.cpp -lm -w $(pkg-config --libs opencv) -o 4_filter
+
+g++ 4_filter_video.cpp -lm -w $(pkg-config --libs opencv) -o 4_filter_video
+
+g++ 4_filter_live.cpp -lm -w $(pkg-config --libs opencv) -o 4_filter_live
+

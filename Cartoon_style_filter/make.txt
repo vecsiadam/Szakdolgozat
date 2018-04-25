@@ -1,0 +1,23 @@
+
+g++ 2_filter.cpp -lm -w $(pkg-config --libs opencv) -o 2_filter
+
+g++ 2_filter_video.cpp -lm -w $(pkg-config --libs opencv) -o 2_filter_video
+
+g++ 2_filter_live.cpp -lm -w $(pkg-config --libs opencv) -o 2_filter_live
+
+
+Steps:
+	- Down sample image Gaussian pyramid
+	- Use bilateral filter
+	- Up sample image Gaussian pyramid
+
+	- Convert sample image BRG to GRAY
+	- Median blur
+
+	- Adaptive threshold for the edge detection
+
+	- Convert GRAY mask image to RGB
+	- Create a cartoon image with bitwise_and function(original image, mask) 
+
+http://www.askaswiss.com/2016/01/how-to-create-cartoon-effect-opencv-python.html
+

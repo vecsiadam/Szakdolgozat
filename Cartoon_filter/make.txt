@@ -1,0 +1,18 @@
+
+g++ 1_filter.cpp -lm -w $(pkg-config --libs opencv) -o 1_filter
+
+g++ 1_filter_video.cpp -lm -w $(pkg-config --libs opencv) -o 1_filter_video
+
+g++ 1_filter_live.cpp -lm -w $(pkg-config --libs opencv) -o 1_filter_live
+
+
+Steps:
+	- Convert sample image BRG to GRAY
+	- Median blur
+	- Laplacian edge detection
+	- Threshold	
+	- Create a cartoon image
+
+https://github.com/MasteringOpenCV/code/blob/master/Chapter1_AndroidCartoonifier/Cartoonifier_Desktop/cartoon.cpp
+
+

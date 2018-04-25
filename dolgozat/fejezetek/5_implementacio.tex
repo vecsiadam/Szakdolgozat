@@ -28,7 +28,6 @@ ahol, \textbf{src} a bemeneti kép, amit szertnénk átalakítani,\\
 \caption{Eredeti kép, Rekurzív filter, Normalizált konvolúció} 
 \label{fig: edgePreservingFilter}
 \end{figure}
-\newpage
 \SubSection{Detail Enhancing filter}
 A második ilyen szűrő a Detail Enhancing filter, ami a képet élesebbé teszi.
 \begin{cpp}
@@ -90,8 +89,9 @@ Ezek után a kép megjelenítése:
 \begin{cpp}
     imshow("Original imagel",img );
     imshow("Image with filter", dst);
-\end{cpp}
-És végezetül a waitKey funkció következik, amely a megadott milliszekundumban megjeleníti a képet. Mivel itt nem mozgó képről beszélünk igy az értéke 0.
+\end{cpp} 
+\newpage
+\noindentÉs végezetül a waitKey funkció következik, amely a megadott milliszekundumban megjeleníti a képet. Mivel itt nem mozgó képről beszélünk igy az értéke 0.
  \begin{cpp}
     waitKey(0);
 \end{cpp}
@@ -124,12 +124,12 @@ ahol, \\
 Gauss piramisban felfelé lépünk kettőt, hogy visszanyerjük az eredeti kép méretet.
 \begin{cpp}
  for(int i=0; i < 2;i++){
-    pyrUp( img, img_res);
+    pyrUp( img_res, img_res);
     }
 \end{cpp}
 ahol, \\
-\indent \textbf{img}: a bemeneti színes kép,\\
-\indent \textbf{img}: a kimeneti kicsinyített színes kép.\\\\
+\indent \textbf{img\_res}: a bemeneti kép kétoldalú szűrővel,\\
+\indent \textbf{img\_res}: a kimeneti nagyított színes kép.\\\\
 Kép konvertálása szürkeárnyalatossá. 
 \begin{cpp}
 cvtColor(img, srcGray, CV_BGR2GRAY);
@@ -150,9 +150,9 @@ ahol, \\
 Adaptív küszöbölés implementációja.
 \begin{cpp}
 Mat img_edge;
-double maxValue = 255;
+double maxValue = 225;
 int blockSize = 9;
-double C = 2); 
+double C = 2; 
 adaptiveThreshold(median,img_edge, maxValue, ADAPTIVE_THRESH_MEAN_C,
 		THRESH_BINARY,blockSize,C); 
 \end{cpp}
@@ -182,14 +182,14 @@ ahol, \\
 \indent \textbf{img\_edge}: a bemeneti élmaszk,\\
 \indent \textbf{img\_cartoon}: kimeneti Cartoon-style filterezett kép.
 \SubSection{Pencil sketch filter}
-Első lépésként átkonvertáltam a képet színesről szűrkeárnyalatossá majd egy medián szűrést hajtottam végre. Ezt az előző szűrőnél már bemutattam így itt nem részletezném, ugyan azokat a paramétereket használtma itt is mint ott.\\
+Első lépésként átkonvertáltam a képet színesről szűrkeárnyalatossá majd egy medián szűrést hajtottam végre. Ezt az előző szűrőnél már bemutattam így itt nem részletezném, annyiban változik a paraméterezése, hogy a kernel mérete itt egy $3 x 3$-as mátrix.\\
 A következő lépésben egy Gauss simítást implementáltam. 
 \begin{cpp}
-Mat img_blur;
+Mat gauss;
 Size ksize = Size(21, 21);
 double sigmaX = 0;
 double sigmaY = 0;
-GaussianBlur(median, img_blur, ksize, sigmaX, sigmaY);
+GaussianBlur(median, gauss, ksize, sigmaX, sigmaY);
 \end{cpp}
 ahol, \\
 \indent \textbf{median}: a bemeneti medián szűrővel ellátott kép,\\
@@ -200,14 +200,14 @@ ahol, \\
 A medián és Gauss szűrő elosztása egymással.
 \begin{cpp}
 Mat img_blend;
-double scale = 245;
-divide(median, img_blur, img_blend, scale);   
+double scale_d = 245;
+divide(median, gauss, img_blend, scale_d);   
 \end{cpp}
 ahol, \\
 \indent \textbf{median}: a bemeneti medián szűrővel ellátott kép,\\
 \indent \textbf{img\_blur}: a bemeneti Gauss szűrővel ellátott kép,\\
 \indent \textbf{img\_blend}: a kimeneti kép a szűrők elosztásának eredménye,\\
-\indent \textbf{scale}: a skalár tényező.\\ \\
+\indent \textbf{scale\_d}: a skalár tényező.\\ \\
 Kontraszt széthúzás.
 \begin{cpp}
 double alpha=0; 
@@ -225,16 +225,16 @@ ahol,
 
 A szürkeárnyalatos vászon összeszorzása a kontraszt széthúzott képpel.
 \begin{cpp}
-double scale = 1.0 / 256;
-multiply(img_blend, canvas, img_blend, scale);
+double scale_m = 1.0 / 256;
+multiply(img_blend, canvas, img_blend, scale_m);
 \end{cpp}
 ahol, \\
 \indent \textbf{img\_blend}: a bemeneti kontraszt széthúzással ellátott kép,\\
 \indent \textbf{canvas}: a bemenet vászon képe,\\
 \indent \textbf{img\_blend}: a kimeneti összeszorzott kép,\\
-\indent \textbf{scale}: választható skálafaktor.\\\\
+\indent \textbf{scale\_m}: választható skálafaktor.\\\\
 \SubSection{Cartoon filter}
-Első lépésként itt mint az előző filtereknél, átkonvertáltam a képet színesről szűrkeárnyalatossá majd egy medián szűrést hajtottam végre.\\
+Első lépésként itt mint az előző filtereknél, átkonvertáltam a képet színesről szűrkeárnyalatossá majd egy medián szűrést hajtottam végre, ahol a kernel mérete $7 x 7$-es matrix.\\
 Ezt egy Laplace éldetektálás követte.
 \begin{cpp}
 int kernel_size = 5;  
@@ -269,22 +269,22 @@ threshold(edges, mask, thresh, maxval, THRESH_BINARY_INV);
 Ez a filter két egyszerű lépésből áll az elős az egy átlagoló szűrő.
 \begin{cpp}
 Size ksize = Size(3, 3);
-blur(img_rgb, img_rgb, ksize);
+blur(img, avg, ksize);
 \end{cpp}
  ahol, \\
-\indent \textbf{img\_rgb}: a bemeneti színes kép,\\
-\indent \textbf{img\_rgb}: a kimeneti elmosott kép,\\
+\indent \textbf{img}: a bemeneti színes kép,\\
+\indent \textbf{avg}: a kimeneti elmosott kép,\\
 \indent \textbf{ksize}: a kernel mérete, itt ebben az esetben egy $3 x 3$-as mátrix. \\ \\
 Mean shift szegmentáció.
 \begin{cpp}
 Mat img_shifted;
 double sp = 15;
 double sr = 50;
-pyrMeanShiftFiltering(img_rgb,img_shifted, sp, sr);
+pyrMeanShiftFiltering(avg, img_shifted, sp, sr);
 \end{cpp}
  ahol, \\
-\indent \textbf{img\_rgb}: a bemeneti színes kép,\\
-\indent \textbf{img\_shifted}: a kimeneti elmosott kép,\\
+\indent \textbf{avg}: a bemeneti átlagolással elmosott színes kép,\\
+\indent \textbf{img\_shifted}: a kimeneti mean shift szegmentálással előállított kép,\\
 \indent \textbf{sp}: a térbeli ablak sugara,\\
 \indent \textbf{sr}: a színablak sugara.
 
