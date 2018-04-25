@@ -18,7 +18,11 @@ Első lépésben az eredeti képet lekicsinyítettem Gauss-piramis segítségév
 \caption{A Gauss-piramisban kicsinyítés és nagyítás valamint a kétoldalú szűrő eredménye } 
 \label{fig: cartoon2}
 \end{figure}
+
 \SubSection{Medián szűrő}
+
+% TODO: Megemlíteni, hogy van néhány alternatíva a szürkeárnyalatos kép konvertálásához http://www.tannerhelland.com/3643/grayscale-image-algorithm-vb6/ . Itt az OpenCV-s beépített változat került felhasználásra.
+
 Ebben a lépésben először az előzőleg kapott elmosott, színes képet átkonvertáltam szürkeárnyalatos képpé. Ennek eredményeként kapott képen medián szűrést hajtottam végre, amit ismét zajcsökkentés miatt alkalmaztam. Így a kép már teljesen el van mosva, egyre jobban cartoon hatása van.
 \begin{figure}[ht]
 \centering
@@ -26,7 +30,9 @@ Ebben a lépésben először az előzőleg kapott elmosott, színes képet átko
 \caption{Szürkére átalakított kép medián szűrővel } 
 \label{fig: cartoon3}
 \end{figure}
+
 \SubSection{Adaptív küszöbölés az élek kiemelésére}
+
 Az adaptív küszöbérték általában szürkeárnyalatos vagy színes képet ad bemenetként, és a legegyszerűbb megvalósításban bináris képet jelenít meg. A kép minden egyes képpontjára egy küszöbértéket kell kiszámítani. Ha a képpontérték a küszöbérték alatt van, akkor a háttérértékre van állítva, ellenkező esetben az előtérbe kerül.
 \begin{figure}[ht]
 \centering
