@@ -1,9 +1,9 @@
 
-g++ 3_filter.cpp -lm -w $(pkg-config --libs opencv) -o 3_filter
+g++ pencil_sketch.cpp -lm -w $(pkg-config --libs opencv) -o pencil_sketch
 
-g++ 3_filter_video.cpp -lm -w $(pkg-config --libs opencv) -o 3_filter_video
+g++ pencil_sketch_video.cpp -lm -w $(pkg-config --libs opencv) -o pencil_sketch_video
 
-g++ 3_filter_live.cpp -lm -w $(pkg-config --libs opencv) -o 3_filter_live
+g++ pencil_sketch_live.cpp -lm -w $(pkg-config --libs opencv) -o pencil_sketch_live
 
 
 Steps:

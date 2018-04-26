@@ -1,7 +1,7 @@
 
-g++ 4_filter.cpp -lm -w $(pkg-config --libs opencv) -o 4_filter
+g++ aquarelle_filter.cpp -lm -w $(pkg-config --libs opencv) -o aquarelle_filter
 
-g++ 4_filter_video.cpp -lm -w $(pkg-config --libs opencv) -o 4_filter_video
+g++ aquarelle_filter_video.cpp -lm -w $(pkg-config --libs opencv) -o aquarelle_filter_video
 
-g++ 4_filter_live.cpp -lm -w $(pkg-config --libs opencv) -o 4_filter_live
+g++ aquarelle_filter_live.cpp -lm -w $(pkg-config --libs opencv) -o aquarelle_filter_live
 

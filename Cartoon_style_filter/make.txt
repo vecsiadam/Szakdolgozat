@@ -1,9 +1,9 @@
 
-g++ 2_filter.cpp -lm -w $(pkg-config --libs opencv) -o 2_filter
+g++ cartoon_style_filter.cpp -lm -w $(pkg-config --libs opencv) -o cartoon_style_filter
 
-g++ 2_filter_video.cpp -lm -w $(pkg-config --libs opencv) -o 2_filter_video
+g++ cartoon_style_filter_video.cpp -lm -w $(pkg-config --libs opencv) -o cartoon_style_filter_video
 
-g++ 2_filter_live.cpp -lm -w $(pkg-config --libs opencv) -o 2_filter_live
+g++ cartoon_style_filter_live.cpp -lm -w $(pkg-config --libs opencv) -o cartoon_style_filter_live
 
 
 Steps:
