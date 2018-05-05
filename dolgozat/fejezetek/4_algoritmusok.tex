@@ -6,7 +6,9 @@ Ebben a fejezetben azokat a filtereket részletezem, amelyeket C++ programozási
 
 \Section{Cartoon-style filter}
 
-Az első filter egy rajzfilm jellegű (\textit{cartoon-style}) filter, amely az éleket kiemeli és a színeket elmossa. Ezekhez a műveletekhez Gauss-piramist, kétoldalú szűrést, medián szűrést, illetve adaptív küszöbölést használtam. A szűrés eredményére egy példát \aref{fig:cartoon1}. ábrán láthatunk.
+Az első filter egy rajzfilm jellegű (\textit{cartoon-style}) filter, amely az éleket kiemeli és a színeket elmossa. A szűrőhöz az ötletet Michael Beyeler hasonló szűrője adta, melyet Python nyelven készített el \cite{beyeler}.
+
+A műveletekhez Gauss-piramist, kétoldalú szűrést, medián szűrést, illetve adaptív küszöbölést használtam. A szűrés eredményére egy példát \aref{fig:cartoon1}. ábrán láthatunk.
 
 \begin{figure}[ht]
 \centering
@@ -66,13 +68,15 @@ Az adaptív küszöböléssel elkészült maszkot át kell konvertálni színes 
 \label{fig:cartoon5}
 \end{figure}
 
-%http://www.askaswiss.com/2016/01/how-to-create-cartoon-effect-opencv-python.html
-
 % TODO: Esetleg pontszerű zajok eltávolítási módjáról lehet még néhány dolog a binarizált kép esetében.
 
 \Section{Pencil sketch filter}
 
-Megpróbáltam egy olyan algoritmust létrehozni, ami egy ceruza rajzot imitál. Ehhez szűrkeárnyalatosra konvertáltam a képet, medián szűrőt, Gauss szűrőt és egyéb képfeldolgozási műveleteket használtam, valamint egy "vásznat" is ráraktam, hogy még jobban olyan érzete legyen a képnek mint ha rajzolták volna (\ref{fig:pencil1}. ábra).
+% https://github.com/MasteringOpenCV/code/blob/master/Chapter1_AndroidCartoonifier/Cartoonifier_Desktop/cartoon.cpp
+
+Megpróbáltam egy olyan algoritmust létrehozni, ami egy ceruza rajzot imitál. A szakirodalomban találunk hasonló szűrési eljárásokat, mivel egy gyakran előforduló hatásról van szó \cite{emami}.
+
+A feldolgozáshoz szűrkeárnyalatosra konvertáltam a képet, medián szűrőt, Gauss szűrőt és egyéb képfeldolgozási műveleteket használtam, valamint egy "vásznat" is ráraktam, hogy még jobban olyan érzete legyen a képnek mint ha rajzolták volna (\ref{fig:pencil1}. ábra).
 
 \begin{figure}[ht]
 \centering
@@ -202,8 +206,6 @@ Az éldetektálás után, alkalmaztam egy küszöbölést amivel létrejött egy
 \label{fig:2_cartoon5}
 \end{figure}
 
-%https://github.com/MasteringOpenCV/code/blob/master/Chapter1_AndroidCartoonifier/Cartoonifier_Desktop/cartoon.cpp
-
 \Section{Aquarelle-style filter}
 
 Az utolsó saját szűrő amit készítettem az egy egyszerű vízfesték (\textit{aquarell}) hatású szűrő. Ez a szűrő teljesen más technikával készült mint az eddigiek. Nem használtam éldetektálást illetve küszöbölést sem. Az eredeti képpel dolgoztam végig, nem maszkoltam. A szűrés két lépésben megoldhatónak bizonyult. Elég egy átlagoló szűrés és egy mean shift szegmentálás egymást követően alkalmazni (\ref{fig:paint}. ábra).
@@ -237,5 +239,5 @@ Minden egyes adatpontnál a mean shift meghatároz egy ablakot, és kiszámítja
 \label{fig:paint2}
 \end{figure}
 
-%https://gist.github.com/dgym/5532135
+% https://gist.github.com/dgym/5532135
 % Ide kellene felsorolni majd a saját szűrők algoritmusait!

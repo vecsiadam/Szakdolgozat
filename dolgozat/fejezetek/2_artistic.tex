@@ -4,6 +4,10 @@
 
 A mai világban elég népszerűek az olyan számítógépes vagy mobiltelefonos alkalmazások, amelyekkel fényképeket vagy videókat lehet átalakítani valós időben, képfeldolgozási módszerekkel. Dolgozatomban ezen alkalmazások működésének hátterével, jellemző algoritmusaival és megvalósítási módjukkal foglalkozom.
 
+A művészi szűrők mögött komoly tudományos eredmények állnak. Többen foglalkoznak azzal, hogy egy-egy művészi jellegű hatás megvalósításának milyen lehetőségei vannak. Alapvetően nagyon irányzatként a témakörben az élek megtartásával történő szűrést \cite{artistic}, és a szegmentálásra épülő objektumkijelölést \cite{intellipaint} különíthetjük el.
+
+A következő szakaszok egyelőre azt vizsgálják, hogy milyen területeken találkozhatunk a művészi szűrők alkalmazásával a népszerű weboldalak és alkalmazások körében.
+
 \Section{Népszerű alkalmazási területek}
 
 A fiatalok többsége ha képfeldolgozásról van szó egyből a közösségi média adta lehetőségekre gondol. Ilyen például az Instagram, Snapchat vagy a Messenger alkalmazások. Ezek az applikációk a telefonok, tabletek kameráját használja, mint a képek vagy videók forrását. Dolgozatomban ezek működésére is kitérek.
@@ -14,15 +18,15 @@ A közösségi alkalmazásokba előszeretettel építenek különféle képfeldo
 
 \paragraph{Instagram} 
 
-Valószínűleg az Instagram egyik legismertebb applikáció, amely képekkel és képfeldolgozással foglalkozik. Ez az alkalmazás pontosan arra készült, hogy a felhasználók megoszthassák egymással  ezeket, majd különféle művészi szűrőkkel láthassanak el. A szűrők köre folyamatosan bővül, valamit egyre testreszabhatók lesznek, például lehet állítani a képek dőlésszögén, fényességén, hogy mennyire legyen kontrasztos, a színek melegségén, mennyire legyen elmosva és hogy hol legyenek az elmosódások.
+Valószínűleg az Instagram egyik legismertebb applikáció, amely képekkel és képfeldolgozással foglalkozik \cite{instagram}. Ez az alkalmazás pontosan arra készült, hogy a felhasználók megoszthassák egymással  ezeket, majd különféle művészi szűrőkkel láthassanak el. A szűrők köre folyamatosan bővül, valamit egyre testreszabhatók lesznek, például lehet állítani a képek dőlésszögén, fényességén, hogy mennyire legyen kontrasztos, a színek melegségén, mennyire legyen elmosva és hogy hol legyenek az elmosódások.
 
 \paragraph{Snapchat} 
 
-A Snapchat is egy képfeldolgozással kapcsolatos alkalmazás, bár teljesen más a koncepció mint az Instagram esetében. Itt is a barátainkkal, imerőseinkkel tudjuk megosztani a grafikus tartalmainkat, de ezek a nyilvánosság számára nem láthatók, csak azok láthatják akiknek adunk jogosultságot, hogy láthassák és ők is csak egy bizonyos ideig, amit mi határozunk meg küldéskor. Ez az alkalmazás nem csak egyszerűen művészi szűrőkkel foglalkozik, hanem képes detektálni az arcokat. Mivel az alkamazás felismeri az arcunkat, így különböző tárgyakat/effekteket képes rárakni ennek megfelelően, például napszemüveget, vicces sapkákat,  különböző fényeket, eltorzítja az arcunk vagy a szemünket.
+A Snapchat is egy képfeldolgozással kapcsolatos alkalmazás \cite{snapchat}, bár teljesen más a koncepció mint az Instagram esetében. Itt is a barátainkkal, imerőseinkkel tudjuk megosztani a grafikus tartalmainkat, de ezek a nyilvánosság számára nem láthatók, csak azok láthatják akiknek adunk jogosultságot, hogy láthassák és ők is csak egy bizonyos ideig, amit mi határozunk meg küldéskor. Ez az alkalmazás nem csak egyszerűen művészi szűrőkkel foglalkozik, hanem képes detektálni az arcokat. Mivel az alkamazás felismeri az arcunkat, így különböző tárgyakat/effekteket képes rárakni ennek megfelelően, például napszemüveget, vicces sapkákat,  különböző fényeket, eltorzítja az arcunk vagy a szemünket.
 
 \paragraph{Messenger} 
 
-Ez az alkalmazás nem kifejezetten képfeldolgozással foglalkozik, azonban már megjelentek benne ezek a funkciók is. Ebben az alkalmazásban barátainkkal, imerőseinkkel tudunk chatelni, tartalmakat megosztani, akár privát módon, akár csoportosan. Képeinket hasonló módon tudjuk szerkeszteni, mint a Snapchat alkalmazással. Itt is arcfelismerés alapján tud rárakni az arcunkra a program mindenféle effektet. Ebben a programban elérhető a videóhívás is ahol szintén haszálhatók effektek.
+Ez az alkalmazás nem kifejezetten képfeldolgozással foglalkozik, azonban már megjelentek benne ezek a funkciók is. Ebben az alkalmazásban barátainkkal, imerőseinkkel tudunk chatelni, tartalmakat megosztani, akár privát módon, akár csoportosan \cite{messenger}. Képeinket hasonló módon tudjuk szerkeszteni, mint a Snapchat alkalmazással. Itt is arcfelismerés alapján tud rárakni az arcunkra a program mindenféle effektet. Ebben a programban elérhető a videóhívás is ahol szintén haszálhatók effektek.
 
 \begin{figure}[ht]
 \centering
@@ -37,13 +41,11 @@ A közösségi alkamazásokon kívül, van néhány olyan weboldal, mobil alkalm
 
 \paragraph{Prisma}
 
-Ez az alkalmazás a képfeldolgozáshoz mesterséges intelligenciát, jellemzően neurális hálókat haszánál, hogy művészi szűrőkkel ellátott képeket hozzon létre. A felhasználó az alkalmazásba betölti az átalakítandó fényképet, kiválasztja a számára megfelelő szűrőt, pár másodperc múlva a szűrővel elláttott kép megjelenik az alkalmazásban. A képfeldolgozás a Prisma esetében távoli szerveren történik [].
+Ez az alkalmazás a képfeldolgozáshoz mesterséges intelligenciát, jellemzően neurális hálókat haszánál, hogy művészi szűrőkkel ellátott képeket hozzon létre \cite{prisma}. A felhasználó az alkalmazásba betölti az átalakítandó fényképet, kiválasztja a számára megfelelő szűrőt, pár másodperc múlva a szűrővel elláttott kép megjelenik az alkalmazásban. A képfeldolgozás a Prisma esetében távoli szerveren történik.
 
 \paragraph{Webkamera alkalmazások} 
 
-Számtalan olyan program, webalkalmazás van amely tartalmaz képfeldolgozási funkciókat. Léteznek gyári beépített programok, amelyek a webkamera saját illesztőprogramjában találhatók meg, és különböző szűrőket tudnak rárakni a képekre.
-
-% https://www.pixect.com képernyőfotók
+Számtalan olyan program, webalkalmazás van amely tartalmaz képfeldolgozási funkciókat. Egy ilyen például a \textit{Pixect} \cite{pixect}. Léteznek továbbá gyári beépített programok, amelyek a webkamera saját illesztőprogramjában találhatók meg, és különböző szűrőket tudnak rárakni a képekre.
 
 Művészi szűrőkkel ellátott képekre láthatunk néhány példát \aref{fig:fig:prisma}. ábrán.
 
@@ -60,13 +62,11 @@ Művészi jellegű szűrőket nem csak magánfelhasználók használnak arra, ho
 
 \paragraph{Jet Set Radio videójáték} 
 
-Ez volt a világon az első olyan videójáték amelyen sötét árnyalatú grafikákat mutattak be, túlzott alakokkal, vastag vonalakkal és lapos, élénk színekkel. Ezzel olyan érzetet keltve, mint ha egy képregény vagy egy rajzfilm lenne. A játékban egy görkorcsolyázó karaktert lehet irányítani és graffitiznie kell a megadott helyekre mielőtt lejár az idő. Plusz pontokért lehet mindenféle extrém trükköt is csinálni korcsolyázás közben. Nehezítésként a játékost üldözik gyalogosan, helikopterekkel és tankokkal. %wikipedia
+A \textit{Jet Set Radio} volt a világon az első olyan videójáték amelyen sötét árnyalatú grafikákat mutattak be, túlzott alakokkal, vastag vonalakkal és lapos, élénk színekkel \cite{jetset}. Ezzel olyan érzetet keltve, mint ha egy képregény vagy egy rajzfilm lenne. A játékban egy görkorcsolyázó karaktert lehet irányítani és graffitiznie kell a megadott helyekre mielőtt lejár az idő. Plusz pontokért lehet mindenféle extrém trükköt is csinálni korcsolyázás közben. Nehezítésként a játékost üldözik gyalogosan, helikopterekkel és tankokkal.
 
-% TODO: Cite
+\paragraph{Kamera által homályosan (A Scanner Darkly) című film} 
 
-\paragraph{Kamera által homályosan (A Scanner Darkly) c. film} 
-
-A filmet digitálisan forgatták, majd interpolált rotoszkóp segítségével animálták. Ez egy olyan animációs technika, melyben az eredeti felvételekből képkockáról képkockára filtereztek. Ezzel olyan hatást értek el, hogy azt lehet mondani erre a filmre, hogy animációs film. A film a nem is olyan távoli jövőben játszódik. Az Egyesült Államok lakosságának nagy része kábítószer-fogyasztó. A hatalom beépített titkos ügynökök és hatékony megfigyelési rendszerek segítségével próbálja az ellenőrzést fönntartani. Az egyik nyomozót, Fredet megbízzák, hogy álljon rá Bob Arctor dílerre, aki életveszélyes drogot terjeszt. Ennek mellékhatásaként ugyanis az ember személyisége két, egymással ellentétes félre bomlik. Fred rájön, hogy Arctor valójában az ő alteregója és önmaga megfigyelése a technikai kérdéseken túl komoly pszichológiai kihívásokat is felvet. % wikipedia, Port.hu
+A \textit{Kamera által homályosan} című filmet digitálisan forgatták, majd interpolált rotoszkóp segítségével animálták \cite{scannerdarkly}. Ez egy olyan animációs technika, melyben az eredeti felvételekből képkockáról képkockára filtereztek. Ezzel olyan hatást értek el, hogy azt lehet mondani erre a filmre, hogy animációs film. A film a nem is olyan távoli jövőben játszódik. Az Egyesült Államok lakosságának nagy része kábítószer-fogyasztó. A hatalom beépített titkos ügynökök és hatékony megfigyelési rendszerek segítségével próbálja az ellenőrzést fönntartani. Az egyik nyomozót, Fredet megbízzák, hogy álljon rá Bob Arctor dílerre, aki életveszélyes drogot terjeszt. Ennek mellékhatásaként ugyanis az ember személyisége két, egymással ellentétes félre bomlik. Fred rájön, hogy Arctor valójában az ő alteregója és önmaga megfigyelése a technikai kérdéseken túl komoly pszichológiai kihívásokat is felvet. % wikipedia, Port.hu
 
 Az említett videójátékról és filmről \aref{fig:jetset}. ábrán láthatunk egy-egy képet.
 
