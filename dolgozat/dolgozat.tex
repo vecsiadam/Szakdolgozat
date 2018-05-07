@@ -1,4 +1,4 @@
-% !TEX encoding = UTF-8 Unicode
+%!TEX encoding = UTF-8 Unicode
 
 \documentclass[12pt,a4paper]{report}
 
@@ -9,6 +9,15 @@
 \usepackage{listings}
 \usepackage{python}
 \usepackage{cpp}
+
+% \usepackage{tikz}
+\usepackage{pgf-pie}
+
+\usepackage{pgfplots}
+\pgfplotsset{width=7cm,compat=1.8}
+\pgfmathdeclarefunction{gauss}{2}{
+  \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
+}
 
 \linespread{1.2}
 
