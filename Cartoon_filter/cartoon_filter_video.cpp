@@ -1,13 +1,16 @@
-//Cartoon filter
-#include <stdio.h>
-#include <iostream>
+/**
+ * Cartoon filter
+ */
+
 #include "opencv2/opencv.hpp"
 #include "opencv2/imgproc.hpp"
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/highgui.hpp"
-#include <signal.h>
-#include <stdlib.h>
 
+#include <iostream>
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 using namespace std;
 using namespace cv;
@@ -16,84 +19,87 @@ void cartoon(Mat img_rgb);
 
 int main(int argc, char** argv)
 {
+    // Open the video
+    VideoCapture cap("tiger.mov"); 
 
-    VideoCapture cap("tiger.mov"); // open the video
-    if(!cap.isOpened())  // check if we succeeded
+    // Check if we succeeded
+    if (!cap.isOpened())  
         return -1;
     
-    
-    //Create a window
+    // Create a window
     namedWindow("Original", 1);
-    namedWindow("Cartoon filter",1);
+    namedWindow("Cartoon filter", 1);
     
-    // fps counter declaration
+    // FPS counter declaration
     time_t start, end;
     int counter = 0;
     double sec;
     double fps;
     
-    for(;;)
+    while (true)
     {
-        // Fps counter
-        if (counter == 0){
+        // FPS counter
+        if (counter == 0) {
             time(&start);
         }
+
+        // Get a new frame from camera
         Mat frame;
-        cap >> frame; // get a new frame from camera
+        cap >> frame; 
         
         resize(frame, frame, Size(frame.cols/2, frame.rows/2));
 
         cartoon(frame);
 
-        // Fps counter
+        // FPS counter
         time(&end);
         counter++;
         sec = difftime(end, start);
         fps = counter/sec;
+
         if (counter > 30)
             printf("%.2f fps\n", fps);
+
         // Overflow protection
         if (counter == (INT_MAX - 1000))
             counter = 0;
         
         // Wait until user press some key
-        if(waitKey(30) >= 0) break;
+        if (waitKey(30) >= 0)
+            break;
     }
     
     return 0;
 }
 
-void cartoon(Mat img){
+void cartoon(Mat img)
+{
+    Mat dst;
     
-    Mat dst ;
-    
-    //Median filtering
+    // Median filtering
     Mat srcGray;
     Mat median;
     int kernel_size = 7;
     cvtColor(img, srcGray, CV_BGR2GRAY);
     medianBlur(srcGray, median, kernel_size);
     
-    //Laplacian edge detectation
+    // Laplacian edge detectation
     Mat edges;
     int kernel_lap = 5;
     Laplacian(median, edges, CV_8U, kernel_lap);
     
-    
-    //Thresholding
+    // Thresholding
     Mat mask;
     double thresh = 90;
     double maxval = 250;
     threshold(edges, mask, thresh, maxval, THRESH_BINARY_INV);
     
-    
-    //Copy mask to the image
+    // Copy mask to the image
     memset((char*)dst.data, 0, dst.step * dst.rows);
     img.copyTo(dst, mask);
     
-    //Show live video
+    // Show live video
     imshow("Cartoon-filter", dst);
-    imshow("Original",img );
-    
-    return ;
+    imshow("Original", img);
 }
+
