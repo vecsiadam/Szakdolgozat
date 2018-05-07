@@ -24,7 +24,7 @@ Első lépésben az eredeti képet lekicsinyítettem Gauss-piramis segítségév
 
 \begin{figure}[ht]
 \centering
-\epsfig{file=kepek/pyrambilateral.jpg,scale=0.45}
+\epsfig{file=kepek/pyrambilateral.jpg,scale=0.5}
 \caption{A Gauss-piramisban kicsinyítés és nagyítás valamint a kétoldalú szűrő eredménye } 
 \label{fig:cartoon2}
 \end{figure}
@@ -38,9 +38,9 @@ $$
 $$ 
 Ennek eredményeként kapott képen medián szűrést hajtottam végre, amit ismét zajcsökkentés miatt alkalmaztam. Így a kép már teljesen el van mosva, egyre jobban rajzfilmszerű hatása van. Ennek az eredménye \aref{fig:cartoon3}. ábrán látható.
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
-\epsfig{file=kepek/graymedian.jpg,scale=0.45}
+\epsfig{file=kepek/graymedian.jpg,scale=0.5}
 \caption{Szürkére átalakított kép medián szűrővel} 
 \label{fig:cartoon3}
 \end{figure}
@@ -51,9 +51,9 @@ Ennek eredményeként kapott képen medián szűrést hajtottam végre, amit ism
 
 Az adaptív küszöbérték általában szürkeárnyalatos vagy színes képet kap bemenetként, és a legegyszerűbb megvalósításban bináris képet eredményez. A kép minden egyes képpontjára egy küszöbértéket kell kiszámítani. Ez a küszöbérték lehet például egy kernelen belüli intenzitások átlaga, vagy egy, a hisztogram alapján becsült érték. Amennyiben a képpontérték a küszöbérték alatt van, akkor a háttérértékre van állítva, ellenkező esetben az előtérbe kerül.
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
-\epsfig{file=kepek/threshold.jpg,scale=0.40}
+\epsfig{file=kepek/threshold.jpg,scale=0.5}
 \caption{Az adaptív küszöbölés eredménye} 
 \label{fig:cartoon4}
 \end{figure}
@@ -62,9 +62,9 @@ Az adaptív küszöbérték általában szürkeárnyalatos vagy színes képet k
 
 Az adaptív küszöböléssel elkészült maszkot át kell konvertálni színes képpé, hogy egyesíteni tudjuk az "elmosott" képpel amit az első két lépésben hoztunk létre. Ennek az elvégzését követően \aref{fig:cartoon5}. ábrán látható eredményt kaptuk.
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
-\epsfig{file=kepek/Cartoon_filter.jpg,scale=0.40}
+\epsfig{file=kepek/Cartoon_filter.jpg,scale=0.65}
 \caption{Cartoon-style szűrő } 
 \label{fig:cartoon5}
 \end{figure}
@@ -75,22 +75,24 @@ Az adaptív küszöböléssel elkészült maszkot át kell konvertálni színes 
 
 % https://github.com/MasteringOpenCV/code/blob/master/Chapter1_AndroidCartoonifier/Cartoonifier_Desktop/cartoon.cpp
 
-Megpróbáltam egy olyan algoritmust létrehozni, ami egy ceruza rajzot imitál. A szakirodalomban találunk hasonló szűrési eljárásokat, mivel egy gyakran előforduló hatásról van szó \cite{emami}.
+Megpróbáltam egy olyan algoritmust létrehozni, ami egy ceruza rajzot imitál. A szakirodalomban találunk hasonló szűrési eljárásokat, mivel egy gyakran előforduló hatásról van szó \cite{beyeler2}.
 
 A feldolgozáshoz szűrkeárnyalatosra konvertáltam a képet, medián szűrőt, Gauss szűrőt és egyéb képfeldolgozási műveleteket használtam, valamint egy "vásznat" is ráraktam, hogy még jobban olyan érzete legyen a képnek mint ha rajzolták volna (\ref{fig:pencil1}. ábra).
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
 \epsfig{file=kepek/2_pencil_sketch_filter.jpg,width=15cm, height=5.625cm}
 \caption{Bal oldalon az eredeti kép látható, jobb oldalon a filterrel ellátott kép} 
 \label{fig:pencil1}
 \end{figure}
 
+\newpage
+
 \SubSection{Medián szűrő}
 
-A kép szűrkeárnyalatos konvertálása után, végrehajtottam egy medián szűrést a kisebb, pont szerű zajok eltávolítása céljából (\ref{fig:pencil2}. ábra). A kernel méretétől függően már ez ad egy egyhe elmosást is a képhez, amely a végeredmény szempontjából előnyös.
+A kép szűrkeárnyalatos konvertálása után, végrehajtottam egy medián szűrést a kisebb, pont szerű zajok eltávolítása céljából (\ref{fig:pencil2}. ábra). A kernel méretétől függően már ez ad egy enyhe elmosást is a képhez, amely a végeredmény szempontjából előnyös.
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
 \epsfig{file=kepek/mediangray.jpg,scale=0.50}
 \caption{Szürkére átalakított kép medián szűrővel} 
@@ -101,9 +103,9 @@ A kép szűrkeárnyalatos konvertálása után, végrehajtottam egy medián szű
 
 Ezt a simítási teknikát, a képzaj  és a részletesség csökkentése érdekében használtam. Olyan sima elmosódást eredményez a képen, mint ha az nem lenne fókuszban (\ref{fig:pencil3}. ábra). A medián szűrőhöz képest lényeges különbség, hogy ezzel új árnyalatok is megjelennek a képen, a kontraszt összességében csökken.
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
-\epsfig{file=kepek/gauss.jpg,scale=0.43}
+\epsfig{file=kepek/gauss.jpg,scale=0.5}
 \caption{Gauss szűrő használata } 
 \label{fig:pencil3}
 \end{figure}
@@ -114,9 +116,9 @@ Ezt a simítási teknikát, a képzaj  és a részletesség csökkentése érdek
 
 Az előző két szűrőt elosztottam egymással, így már tényleg majdnem olyan képet kaptam ami már ceruza rajz szerű. Úgy gondoltam még azért ráfér némi javítás, így még további műveleteket hajtottam végre rajta.
 
-\begin{figure}[ht] 
+\begin{figure}[h!] 
 \centering
-\epsfig{file=kepek/blend.jpg,scale=0.43}
+\epsfig{file=kepek/blend.jpg,scale=0.5}
 \caption{Medián szűrés és a Gauss szűrés hányadosa } 
 \label{fig: pencil4}
 \end{figure}
@@ -125,9 +127,9 @@ Az előző két szűrőt elosztottam egymással, így már tényleg majdnem olya
 
 Azt figyeltem meg, hogy ha így hagyom a "Pencil sketch" szűrőt, akkor némely kép eléggé kontraszt szegény marad. Emiatt célszerűnek tünt belerakni egy kontraszt széthúzást, a szebb végeredmény érdekében. A széthúzás (vagy másnéven \textit{normalizáció}) egy egyszerű képjavító eljárás, amely megpróbálja javítani a kép kontrasztját azáltal, hogy "kiterjeszti" a benne lévő intenzitásértékek tartományát a kívánt értéktartományra. Ezt a műveletet követően a példaként szereplő képre \aref{fig:pencil5}. ábrán látható eredményt kaptam.
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
-\epsfig{file=kepek/contraststrech.jpg,scale=0.50}
+\epsfig{file=kepek/contraststrech.jpg,scale=0.5}
 \caption{Kontraszt széthúzás} 
 \label{fig:pencil5}
 \end{figure}
@@ -136,27 +138,29 @@ Azt figyeltem meg, hogy ha így hagyom a "Pencil sketch" szűrőt, akkor némely
 
 A kontraszt széthúzása után, már egészen olyan hatása volt a képnek, mint ha egy ceruza rajz lenne. Ráraktam még egy "vászont" ami személyes véleményem szerint mégjobban segíti azt az érzetet hogy ez egy ceruzarajz. Először a vászonnak a színét át kellett konvertálnom színesből szűrkeárnyalatossá, hogy használható legyen a kontraszt széthúzott képhez (\ref{fig:pencil6}. ábra). Ezek után a vászont összeszoroztam az eddig eredményül kapott képpel, így jött létre a "Pencil sketch filter".
 
-\begin{figure}[ht] 
+\begin{figure}[h!] 
 \centering
-\epsfig{file=kepek/canvasgray.jpg,width=10cm, height=3cm}
+\epsfig{file=kepek/canvasgray.jpg,scale=0.32}
 \caption{Vászon színének konvertálása}
 \label{fig:pencil6}
 \end{figure}
 
 \Aref{fig:pencil7}. ábrán láthatjuk a végeredményként kapott képet.
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
-\epsfig{file=kepek/pencil_sketch.jpg, scale=0.50}
+\epsfig{file=kepek/pencil_sketch.jpg, scale=0.4}
 \caption{A \textit{Pencil sketch filter} eredménye} 
 \label{fig:pencil7}
 \end{figure}
 
 \Section{Cartoon filter}
 
-Megpróbáltam más technikával is létrehozni egy cartoon hatású képet. Ahol medián szűrőt, Laplace éldetektálást valamit küszöbölést használtam (\ref{fig:2_cartoon1}. ábra).
+Megpróbáltam más technikával is létrehozni egy cartoon hatású képet, mivel a fellelhető irodalmakban is számos, különféle megoldást találni \cite{emami}.
 
-\begin{figure}[ht]
+Ahol medián szűrőt, Laplace éldetektálást valamit küszöbölést használtam (\ref{fig:2_cartoon1}. ábra).
+
+\begin{figure}[h!]
 \centering
 \epsfig{file=kepek/3_cartoon_filter2.jpg,width=15cm, height=5.625cm}
 \caption{Bal oldalon az eredeti kép látható, jobb oldalon a filterrel ellátott kép} 
@@ -167,9 +171,9 @@ Megpróbáltam más technikával is létrehozni egy cartoon hatású képet. Aho
 
 Mint az eddigi saját filtereknél, itt is előfeldolgozásként elvégeztem szürkeárnyalatossá konvertálást valamint egy medián szűrést (\ref{fig:2_cartoon2}. ábra).
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
-\epsfig{file=kepek/Cartoon1_gray.jpg,scale=0.485}
+\epsfig{file=kepek/Cartoon1_gray.jpg,scale=0.45}
 \caption{Szürkére átalakított kép medián szűrővel} 
 \label{fig:2_cartoon2}
 \end{figure}
@@ -180,10 +184,10 @@ Ennél a filternél a Laplace éldetektálást választottam. Ezzel olyan élmas
 
 % Ez az éldetektálás gradiensekkel számol, ahol a gradiens nagy, ott a második derivált értéke 0.
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
-\epsfig{file=kepek/Cartoon1_laplacian.jpg,scale=0.485}
-\caption{Laplacian éldetektálás} 
+\epsfig{file=kepek/Cartoon1_laplacian.jpg,scale=0.45}
+\caption{Laplace éldetektálás} 
 \label{fig:2_cartoon3}
 \end{figure}
 
@@ -191,18 +195,18 @@ Ennél a filternél a Laplace éldetektálást választottam. Ezzel olyan élmas
 
 Az éldetektálás után, alkalmaztam egy küszöbölést amivel létrejött egy maszk, amit összeraktam az eredeti képpel (\ref{fig:2_cartoon4}. ábra).
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
-\epsfig{file=kepek/Cartoon1_thresh.jpg,scale=0.4}
+\epsfig{file=kepek/Cartoon1_thresh.jpg,scale=0.45}
 \caption{Küszöbölés} 
 \label{fig:2_cartoon4}
 \end{figure}
 
 Így készült el végeredményként a \textit{Cartoon filter}, melynek az eredménye \aref{fig:2_cartoon5}. ábrán látható.
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
-\epsfig{file=kepek/Cartoon1_filter1.jpg,scale=0.48}
+\epsfig{file=kepek/Cartoon1_filter1.jpg,scale=0.45}
 \caption{Cartoon filter} 
 \label{fig:2_cartoon5}
 \end{figure}
@@ -211,7 +215,7 @@ Az éldetektálás után, alkalmaztam egy küszöbölést amivel létrejött egy
 
 Az utolsó saját szűrő amit készítettem az egy egyszerű vízfesték (\textit{aquarell}) hatású szűrő. Ez a szűrő teljesen más technikával készült mint az eddigiek. Nem használtam éldetektálást illetve küszöbölést sem. Az eredeti képpel dolgoztam végig, nem maszkoltam. A szűrés két lépésben megoldhatónak bizonyult. Elég egy átlagoló szűrés és egy mean shift szegmentálás egymást követően alkalmazni (\ref{fig:paint}. ábra).
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
 \epsfig{file=kepek/4_paint_filter.jpg,width=15cm, height=5.625cm}
 \caption{Aquarelle-style filter} 
@@ -222,7 +226,7 @@ Az utolsó saját szűrő amit készítettem az egy egyszerű vízfesték (\text
 
 Átlagoló szűrővel elmostam az eredeti színes képet, hogy az apróbb zajokat kiszűrjem (\ref{fig:paint1}. ábra).
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
 \epsfig{file=kepek/Paint_filter_blur.jpg,scale=0.48}
 \caption{Átlagoló szűrő  } 
@@ -231,11 +235,11 @@ Az utolsó saját szűrő amit készítettem az egy egyszerű vízfesték (\text
 
 \SubSection{Mean shift szegmentálás}
 
-Minden egyes adatpontnál a mean shift meghatároz egy ablakot, és kiszámítja az adatpont átlagát. Ezután az ablak közepét az átlag felé tolja, és megismétli az algoritmust, amíg konvergens. Az mean shift egy nemparametrikus iteratív algoritmus vagy egy nemparametrikus sűrűségi gradiens becslés egy általánosított kernel megközelítés alkalmazásával (\ref{fig:paint2}. ábra).
+Minden egyes adatpontnál a mean shift meghatároz egy ablakot, és kiszámítja az adatpont átlagát. Ezután az ablak közepét az átlag felé tolja, és megismétli az algoritmust, amíg konvergens. A mean shift egy nemparametrikus iteratív algoritmus vagy egy nemparametrikus sűrűségi gradiens becslés egy általánosított kernel megközelítés alkalmazásával (\ref{fig:paint2}. ábra).
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
-\epsfig{file=kepek/Paint_filter.jpg,scale=0.48}
+\epsfig{file=kepek/Paint_filter.jpg,scale=0.6}
 \caption{Aquarelle-style filter, mean shift szegmentálás  eredménye} 
 \label{fig:paint2}
 \end{figure}

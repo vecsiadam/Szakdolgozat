@@ -43,10 +43,20 @@ $$
 
 A Gauss függvény grafikonját \aref{fig:gauss}. ábrán láthatjuk.
 
-\begin{figure}[ht]
-\centering
-\epsfig{file=kepek/gaussgorbe.png,scale=0.65}
-\caption{1 dimenziós Gauss függvény} 
+% \epsfig{file=kepek/gaussgorbe.png,scale=0.65}
+
+\begin{figure}[h!]
+% \centering
+\begin{tikzpicture}
+\begin{axis}[every axis plot post/.append style={
+  mark=none,domain=-4:4,samples=50,smooth},
+  axis x line=bottom,
+  axis y line=left,
+  enlargelimits=upper]
+  \addplot {gauss(0, 1)};
+\end{axis}
+\end{tikzpicture}
+\caption{Az egydimenziós Gauss függvény $\mu = 0$ és $\sigma = 1$ paraméterekkel}
 \label{fig:gauss}
 \end{figure}
 
@@ -232,14 +242,16 @@ Az Canny éldetektálás olyan technika, amely a különböző objektumokból sz
 \indent 2. A kép intenzitás gradiensének megkeresése\\
 \indent 3. Nem-maximumok elhagyása\\
 \indent 4. Hiszterézis küszöbölés \\ 
-\\
-\textbf{1. Gauss simítás:}\\ \\
+
+\subsubsection{1. Gauss simítás}
+
 Mivel az éldetektálás eredményeit a képzaj is könnyen befolyásolja, elengedhetetlen a zaj kiszűrése, hogy megelőzze a zaj által okozott hamis detektálást. A kép simítása érdekében Gauss szűrőt alkalmazunk. Ez a lépés enyhén simítja a képet, hogy csökkentse a nyilvánvaló zaj hatását a éldetektálásra.
-\\ \\
-\textbf{2. A kép intenzitás gradiensének megkeresése:}\\ \\
+
+\subsubsection{2. A kép intenzitás gradiensének megkeresése}
+
 A kép élei különböző irányokban jelennek meg, így a Canny algoritmus négy szűrőt használ a vízszintes, függőleges és átlós élek detektálásához az elmosódott képen. Éldetektáló operátor (például Sobel) az első derivált értékét vízszintes irányban $(G_x)$ és a függőleges irányba $(G_y)$ adja vissza. Ebből meghatározható az él-gradiens és az irány:
 $$
-G = sqrt{G_{x}^{2}+G_{y}^{2}},
+G = \sqrt{G_{x}^{2}+G_{y}^{2}},
 \quad
 \Theta = arctan2\left(\frac{G_y}{G_x}\right)
 $$
@@ -247,7 +259,7 @@ ahol $G$ a hypot függvény segítségével számítható ki, és az arctan2 az 
 
 Az élirány-szög négy függőleges, vízszintes és két átlós (0 , 45 , 90  és 135 fokok) függőleges szögek egyikére kerekítve van. Az egyes színsávokba eső élek iránya meghatározott szögértékekre van beállítva.
 
-\textbf{3. Nem-maximumok elhagyása:}
+\subsubsection{3. Nem-maximumok elhagyása:}
 
 A nem-maximumok elhagyása a "vékony" élekre alkalmazzák. A gradiens kiszámítása után a gradiens értékből kivont él még mindig homályos. A 3. kritérium vonatkozásában csak egy pontos válasz lehet az élre. Így a nem-maximumok elhagyása segíthet elhagyni a gradiens értékeket (0-ra állítva), kivéve a lokális maximumokat, amelyek a legerősebb intenzitásérték-változást jelzik. Az algoritmus a következő, minden pixelre a gradiens képen:
 \begin{itemize}
@@ -257,7 +269,7 @@ A nem-maximumok elhagyása a "vékony" élekre alkalmazzák. A gradiens kiszám�
 
 Bizonyos implementációkban az algoritmus a folyamatos gradiens irányokat különálló diszkrét irányokba sorolja, majd egy $3 \times 3$ szűrőt rak az előző lépés kimenetre. Minden pixelben elhagyja a középső képpont él-erősségét (az értékét 0-ra állítva), ha nagysága nem nagyobb, mint a két szomszéd nagysága a gradiens irányba.
 
-\textbf{4. Hiszterézis küszöbölés:}
+\subsubsection{4. Hiszterézis küszöbölés:}
 
 Eddig az erős élű képpontokat minden bizonnyal be kell vonni a végső élbe, mivel ezek a kép valódi éleiből származnak.Vannak azonban viták a gyenge élű képpontokról, mivel ezek a pixelek kiválaszthatók az igazi élről, vagy a zaj/színváltozatokról. Pontos eredmény elérése érdekében az utóbbi okok által okozott gyenge éleket el kell távolítani. Általában gyenge él pixeleket okoznak, az igazi élek amikor erős élű pixelekhez kapcsolódnak, amíg a zajok nem kapcsolódnak hozzá. Az élkapcsolat nyomon követéséhez a blob elemzést kell végre hajtani, ami egy gyenge élű pixel és 8-as kapcsolatú szomszédos pixelek figyelembevétele. Mindaddig, amíg van egy erős élű pixel, amely részt vesz a blob elemzésben, a gyenge élű pontot lehet azonosítani, amit meg is kell őrizni.
 

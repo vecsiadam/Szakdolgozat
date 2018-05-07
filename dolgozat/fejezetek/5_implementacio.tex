@@ -24,11 +24,11 @@ edgePreservingFilter(Mat src, Mat dst, int flags=1,
 \end{cpp}
 ahol,
 \begin{itemize}
-    \item \texttt{src} a bemeneti kép, amit szertnénk átalakítani,
-    \item \texttt{dst} a filterrel ellátot kép,
-    \item \texttt{flags} maga az él kiemelő filter melynek két paramétere lehet, \texttt{RECURS\_FILTER} (rekurív szűrő) aminek az értéke 1 vagy \texttt{NORMCONV\_FILTER} (normalizált konvolúció) aminek az értéke 2.  A futási sebességtől függ melyik paramétert alkalmazzuk, ha gyorsabb sebességet akarounk elérni akkor a rekurzív filtert alkamazzuk, ha viszont nem számít a sebesség akkor a  normalizált konvolúciót mert az szebben kiemeli az éleket.
-    \item \texttt{sigma\_s} egy skála 0 és 200 között, \texttt{Sigma\_spatial} a simítás mértékét határozzuk meg,
-    \item \texttt{sigma\_r} egy skála 0 és 1 között, \texttt{Sigma\_range} szabályozza, hogy a szomszédságon belül a különböző színek milyen mértékben átlagolódjanak.
+    \item \texttt{src}: a bemeneti kép, amit szertnénk átalakítani,
+    \item \texttt{dst}: a filterrel ellátot kép,
+    \item \texttt{flags}: maga az él kiemelő filter melynek két paramétere lehet, \texttt{RECURS\_FILTER} (rekurív szűrő) aminek az értéke 1 vagy \texttt{NORMCONV\_FILTER} (normalizált konvolúció) aminek az értéke 2.  A futási sebességtől függ melyik paramétert alkalmazzuk, ha gyorsabb sebességet akarounk elérni akkor a rekurzív filtert alkamazzuk, ha viszont nem számít a sebesség akkor a  normalizált konvolúciót mert az szebben kiemeli az éleket.
+    \item \texttt{sigma\_s}: egy skála 0 és 200 között, \texttt{Sigma\_spatial} a simítás mértékét határozzuk meg,
+    \item \texttt{sigma\_r}: egy skála 0 és 1 között, \texttt{Sigma\_range} szabályozza, hogy a szomszédságon belül a különböző színek milyen mértékben átlagolódjanak.
 \end{itemize}
 
 \begin{figure}[ht]
@@ -44,7 +44,6 @@ A második ilyen szűrő a \textit{Detail Enhancing filter}, ami a képet élese
 \begin{cpp}
 detailEnhance(Mat src, Mat dst, float sigma_s=10, float sigma_r=0.15f);
 \end{cpp}
-
 A paraméterek megegyeznek az Edge Preserving filter paramétereivel. 
 
 \begin{figure}[ht]
@@ -61,10 +60,9 @@ Ez a szűrő ceruza rajzot eredményez, két féle képet eredményez egy színe
 pencilSketch(Mat src, Mat dst_gray, Mat dst_color, float sigma_s=60, 
 		float sigma_r=0.07f, float shade_factor=0.02f);
 \end{cpp}
-
-A paraméterek megegyeznek az Edge Preserving szűrőével, de bővül egy paraméterrel:
+A paraméterek megegyeznek az Edge Preserving szűrőével, de bővül az alábbi paraméterrel:
 \begin{itemize}
-    \item \texttt{shade\_factor} ami egy 0 és 0,1 közötti érték, a kimeneti képintenzitás skálázása. Minél magasabb az érték, annál fényesebb az eredmény.
+    \item \texttt{shade\_factor}: ami egy 0 és 0,1 közötti érték, a kimeneti képintenzitás skálázása. Minél magasabb az érték, annál fényesebb az eredmény.
 \end{itemize}
 
 \begin{figure}[ht]
@@ -100,8 +98,8 @@ Ebben a fejezetben szeretném bemutatni a saját szűrőknek a C++ implementáci
 Elsőként bemutatnám a kép betöltésének implementációját, amit minden szűrőn használtam.
 \begin{cpp}
 Mat img = imread("image.jpg"); // bemeneti kep
-Mat dst ; //kimeneti kep
-//Ha valami nem stimmel a kep betoltesnel
+Mat dst; // kimeneti kep
+// Ha valami nem stimmel a kep betoltesnel
 if (img.empty()) {
     cout << "Error loading the image" << endl;
     return -1;
@@ -112,9 +110,7 @@ Ablak létrehozása :
 namedWindow("Original image", 1);
 namedWindow("Image with filter", 1);
 \end{cpp}
-Ezután következik az a rész, amit a következő alfejezetekben fogok részletezni, hogy tulajdon képpen milyen lépésekből épül fel a filter.
-
-Ezek után a kép megjelenítése:
+Ezután következik az a rész, amit a következő alfejezetekben fogok részletezni, hogy tulajdon képpen milyen lépésekből épül fel a filter. Ezek után a kép megjelenítése:
 \begin{cpp}
 imshow("Original imagel",img );
 imshow("Image with filter", dst);
@@ -136,8 +132,7 @@ ahol,
     \item \texttt{img}: a bemeneti színes kép,
     \item \texttt{img}: a kimeneti kicsinyített színes kép.
 \end{itemize}
-
-Egymás után 7 szer hajtjuk végre a kétoldalú szűrőt.
+Egymás után hétszer hajtjuk végre a kétoldalú szűrőt.
 \begin{cpp}
 Mat img_res;
 int d = 9;
@@ -155,7 +150,6 @@ ahol,
     \item \texttt{sigmaColor}: szűri a szigmát a színtérben,
     \item \texttt{sigmaSpace}: szűri a szigmát a koordinátatérben.
 \end{itemize}
-
 Gauss piramisban felfelé lépünk kettőt, hogy visszanyerjük az eredeti kép méretet.
 \begin{cpp}
 for (int i = 0; i < 2; i++) {
@@ -167,22 +161,22 @@ ahol,
     \item \texttt{img\_res}: a bemeneti kép kétoldalú szűrővel,
     \item \texttt{img\_res}: a kimeneti nagyított színes kép.
 \end{itemize}
-Kép konvertálása szürkeárnyalatossá. 
+Egy képet a
 \begin{cpp}
 cvtColor(img, srcGray, CV_BGR2GRAY);
 \end{cpp}
-ahol,
+utasítással konvertálhatunk szürkeárnyalatossá, amelyben
 \begin{itemize}
     \item \texttt{img}: a bemeneti színes kép,
     \item \texttt{srcGray}: a kimeneti szürkeárnyalatos kép,
     \item \texttt{CV\_BGR2GRAY}: színes kép szürkeárnyalatosra alakítására használatos paraméter.
 \end{itemize}
-A következő lépésben a medián szűrőt implementáltam.
+A következő lépésben a medián szűrőt implementáltam az
 \begin{cpp}
 int kernel_size = 7;
 medianBlur(srcGray, median, kernel_size);
 \end{cpp}
-ahol,
+formában, ahol
 \begin{itemize}
     \item \texttt{srcGray}: a bemeneti szürkeárnyalatos kép,
     \item \texttt{median}: a kimeneti medián szűrővel ellátott kép,
@@ -217,12 +211,12 @@ ahol,
     \item \texttt{img\_edge}: a kimeneti színes kép,
     \item \texttt{CV\_GRAY2RGB}: szürkeárnyalatos kép színesre alakítására használatos paraméter.
 \end{itemize}
-Az elmosott kép és a maszk egyesítése. 
+Az elmosott képet és a maszkot 
 \begin{cpp}
 Mat img_cartoon;
 bitwise_and(img_res, img_edge, img_cartoon);
 \end{cpp}
-ahol,
+programsorokkal egyesíthetjük, ahol
 \begin{itemize}
     \item \texttt{img\_res}: a bemeneti elmosott kép,
     \item \texttt{img\_edge}: a bemeneti élmaszk,
@@ -275,7 +269,6 @@ ahol,
     \item \texttt{beta}: első tartományhatár a tartomány normalizálása esetén,
     \item \texttt{CV\_MINMAX}: választható maszk művelet.
 \end{itemize}
-
 A szürkeárnyalatos vászon összeszorzása a kontraszt széthúzott képpel.
 \begin{cpp}
 double scale_m = 1.0 / 256;
@@ -320,8 +313,8 @@ ahol,
 $$
 mask(x, y) = \left\{
 \begin{array}{ll}
-0 & \mbox{, ha edge$(x, y)$> thresh,}\\
-maxval & \mbox{, különben}
+0, & \mbox{ ha edge$(x, y)$ > thresh,}\\
+maxval, & \mbox{ különben}
 \end{array}
 \right.
 $$
@@ -329,7 +322,7 @@ $$
 
 \SubSection{Aquarelle-stlye filter}
 
-Ez a filter két egyszerű lépésből áll az elős az egy átlagoló szűrő.
+Ez a filter két egyszerű lépésből áll az első az egy átlagoló szűrő.
 \begin{cpp}
 Size ksize = Size(3, 3);
 blur(img, avg, ksize);
@@ -340,7 +333,6 @@ ahol,
     \item \texttt{avg}: a kimeneti elmosott kép,
     \item \texttt{ksize}: a kernel mérete, itt ebben az esetben egy $3 \times 3$-as mátrix.
 \end{itemize}
-
 Mean shift szegmentáció.
 \begin{cpp}
 Mat img_shifted;

@@ -3,15 +3,13 @@
 \Chapter{Tesztek, eredmények bemutatása}
 \label{chap:tests}
 
-Azokat a szűrőket amelyeket \aref{chap:filters}. fejezetben tárgyaltam, nem csak képek átalakítására használtam, hanem videókon is teszteltem. Ebben a fejezetben szeretném leírni ezzel kapcsolatban a tapasztalataimat. 
-
-Fontosnak tartottam, hogy a vizsgálatok a futási időkre is kitérjenek, ezért a feldolgozási lépések számítási idejét külön-külön lemértem.
+Azokat a szűrőket amelyeket \aref{chap:filters}. fejezetben tárgyaltam, nem csak képek átalakítására használtam, hanem videókon is teszteltem. Ebben a fejezetben szeretném leírni ezzel kapcsolatban a tapasztalataimat.  Fontosnak tartottam, hogy a vizsgálatok a futási időkre is kitérjenek, ezért a feldolgozási lépések számítási idejét külön-külön lemértem.
 
 A tesztekhez használt számítógép konfigurációja a következő:
 \begin{itemize}
 \item MacBook Pro 2014 mid,
 \item 2.6 GHz Intel Core i5 processzor,
-\item 8GM RAM,
+\item 8GB RAM,
 \item Intel Iris 1536 MB grafikus kártya,
 \item macOS High Sierra operációs rendszer.
 \end{itemize}
@@ -152,7 +150,9 @@ Ebben a részben, a videók valamint az élő kép feldolgozási idejét mérem 
 
 \SubSection{Cartoon-style filter}
 
-Ha futtatjuk az első filtert, látható, hogy a videó képe vibrál néhány pontban. Ezeket kilehet javítani, ha veszünk egy bizonyos kernel méretet és megvizsgáljuk, látjuk hogy a kernelen belül a színek túl nyomó többségben megegyeznek, viszont van néhány pont ami fekete, akkor a fekete pontokat átállítjuk olyan színüre, ami többségben van a kernelen belül. A videóknál, valamint a valós idejű feldolgozásnál mértem képkocka per másodpercet is. Látszik, hogy nem éri el a 24 fps-t sem a videó, sem a kamera képe ennél a szűrőnél. Azért 24 fps mivelt azt már az emberi szem folyamatosnak érzékeli, itt viszont kissé lassabb a kép. A méréseim alapján a videókon átlagosan 15-16 közötti képkocka szám van, a kamera képén 12-15.
+Ha futtatjuk az első filtert, látható, hogy a videó képe vibrál néhány pontban.
+
+Ezeket ki lehet javítani, ha veszünk egy bizonyos kernel méretet és megvizsgáljuk, látjuk hogy a kernelen belül a színek túl nyomó többségben megegyeznek, viszont van néhány pont ami fekete, akkor a fekete pontokat átállítjuk olyan színüre, ami többségben van a kernelen belül. A videóknál, valamint a valós idejű feldolgozásnál mértem képkocka per másodpercet is. Látszik, hogy nem éri el a 24 fps-t sem a videó, sem a kamera képe ennél a szűrőnél. Azért 24 fps mivelt azt már az emberi szem folyamatosnak érzékeli, itt viszont kissé lassabb a kép. A méréseim alapján a videókon átlagosan 15-16 közötti képkocka szám van, a kamera képén 12-15.
 
 \SubSection{Pencil sketch filter}
 
