@@ -3,96 +3,169 @@
 \Chapter{Tesztek, eredmények bemutatása}
 \label{chap:tests}
 
-Azokat a szűrőket amelyeket a \textbf{4. fejezet}ben tárgyaltam, nem csak képek átalakítására használtam, hanem videókon is teszteltem. Ebben a fejezetben szeretném leírni ezzel kapcsolatban a tapasztalataimat. 
+Azokat a szűrőket amelyeket \aref{chap:filters}. fejezetben tárgyaltam, nem csak képek átalakítására használtam, hanem videókon is teszteltem. Ebben a fejezetben szeretném leírni ezzel kapcsolatban a tapasztalataimat. 
 
-Először a technikai adatait szeretném leírni a számítógépnek amin írtam és futtattam a programokat. Ez egy MacBook Pro  2014 mid, 2.6 GHz Intel Core i5 processzorral, 8 gb memóriával, Intel Iris 1536 MB grafikus kártyával és macOS High Sierra operációs rendszerrel.
+Fontosnak tartottam, hogy a vizsgálatok a futási időkre is kitérjenek, ezért a feldolgozási lépések számítási idejét külön-külön lemértem.
+
+A tesztekhez használt számítógép konfigurációja a következő:
+\begin{itemize}
+\item MacBook Pro 2014 mid,
+\item 2.6 GHz Intel Core i5 processzor,
+\item 8GM RAM,
+\item Intel Iris 1536 MB grafikus kártya,
+\item macOS High Sierra operációs rendszer.
+\end{itemize}
 
 \Section{Szűrők tesztelése képeken}
 
-Elsőként képeken teszteltem a szűrőimet, azokon a képeken amiket már a \textbf{4. fejezet}ben bemutattam. Az első tesztekben azt mutatom meg, hogy mennyi milliszekundum alatt készül el a kép és melyik művelet mennyi ideig tart, természetesen milliszekundumban mutatom meg aztokat is.
+Először képeken teszteltem az elkészített szűrőket. Az első tesztekben azt mutatom meg, hogy mennyi milliszekundum alatt készül el a kép és melyik művelet mennyi ideig tart, szintén milliszekundumban megadva.
 
-\textbf{Cartoon-style filter}
+\newpage
 
-Image loading time ms: 4.795\\
-Creating windows time in ms: 48.967\\
-Gaussian pyramid down in ms: 1.114\\
-Bilateral filter time in ms: 22.23\\
-Gaussian pyramid up time in ms: 1.387\\
-Convert rgb img to gray and median filter  time in ms: 8.844\\
-Adaptive threshold time in ms: 1.077\\
-Convert back to color, bit-AND time in ms: 2.813\\
-Write and show images time in ms: 21.723\\
-Image processing time in ms: 113.229\\\\
+\SubSection{Cartoon-style filter}
 
-\begin{figure}
+A szűrő egyes lépéseinek időigényét \aref{fig:pie1}. ábrán láthatjuk. Az aktuális program esetében jól láthatóan időigényes művelet volt a kép betöltése, illetve a megjelenítéshez az ablak létrehozása.
+
+A lényegi lépések közül a bilaterális szűr alkalmazása vette el a legtöbb időt, majd a szürkeárnyalatosra alakítás.
+
+% Image loading time ms: 4.795\\
+% Creating windows time in ms: 48.967\\
+% Gaussian pyramid down in ms: 1.114\\
+% Bilateral filter time in ms: 22.23\\
+% Gaussian pyramid up time in ms: 1.387\\
+% Convert rgb img to gray and median filter  time in ms: 8.844\\
+% Adaptive threshold time in ms: 1.077\\
+% Convert back to color, bit-AND time in ms: 2.813\\
+% Write and show images time in ms: 21.723\\
+% Image processing time in ms: 113.229\\\\
+
+\begin{figure}[h!]
 \centering
 \begin{tikzpicture}
 \pie[text=legend, sum=113.229]{
-4.795/image loading,
-48.967/window creation,
-1.114/Gaussian pyramid down,
-22.23/bilateral filter,
-1.387/Gaussian pyramid up,
-8.844/RGB img to gray,
-1.077/threshold,
-2.813/convert to color,
-21.723/write and show image
+    4.795/képbetöltés (4.795 ms),
+    48.967/ablak létrehozása (48.967 ms),
+    1.114/Gauss-piramis down szűrő (1.114 ms),
+    22.23/bilateral filter (22.23 ms),
+    1.387/Gauss piramis up szűrő (1.387 ms),
+    8.844/szürkeárnyalatosítás (8.844 ms),
+    1.077/küszöbölés (1.077 ms),
+    2.813/színesre konvertálás (2.813 ms),
+    21.723/kép mentése és megjelenítése (21.723 ms)
 }
 \end{tikzpicture}
-\caption{Cartoon style filter}
+\caption{Cartoon style filter alkalmazásának időigénye (összesen 113.229 ms)}
+\label{fig:pie1}
 \end{figure}
 
-\textbf{Pencil sketch filter}
+\SubSection{Pencil sketch filter}
 
-Image loading time in ms: 9.775\\
-Creating a window time in ms: 51.585\\
-Convert rgb iamge to gray and median filter time in ms: 1.495\\
-Gaussian filter time in ms: 9.691\\
-Gaussian filter and median filter divide time in ms: 0.476\\
-Contrast strech time in ms: 0.168\\
-Multiply the canvas and the smooth image time in ms: 2.793\\
-Write and show images time in ms: 17.503\\
-Image processing time in ms: 93.661
+A szűrő szemléltetésére készített alkalmazás futásának jelentős idejét itt is a kép betöltése és az ablak megjelenítése tette ki (\ref{fig:pie2}. ábra). A következő nagyobb költségű művelet a Gauss szűrő alkalmazása volt.
 
-\textbf{Cartoon filter}
+% Image loading time in ms: 9.775\\
+% Creating a window time in ms: 51.585\\
+% Convert rgb iamge to gray and median filter time in ms: 1.495\\
+% Gaussian filter time in ms: 9.691\\
+% Gaussian filter and median filter divide time in ms: 0.476\\
+% Contrast strech time in ms: 0.168\\
+% Multiply the canvas and the smooth image time in ms: 2.793\\
+% Write and show images time in ms: 17.503\\
+% Image processing time in ms: 93.661
 
-Image loading time in ms: 4.959\\
-Create windows time in ms: 51.136\\
-Median filtering time in ms: 9.916\\
-Laplacian edge detectation time in ms: 0.961\\
-Thresholding time in ms: 0.467\\
-Copy mask to the image time in ms: 0.838\\
-Write and show images time in ms: 19.56\\
-Image processing time in ms: 88.059\\\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\pie[text=legend, sum=93.661]{
+    9.775/képbetöltés (9.775 ms),
+    51.585/ablak létrehozása (51.585 ms),
+    1.495/szürkeárnyalatosítás és medián szűrő (1.495 ms),
+    9.691/Gauss szűrő (9.691 ms),
+    0.476/Gauss szűrt és medián szűrt kép osztása (0.476 ms),
+    0.168/kontraszt széthúzása (0.168 ms),
+    2.793/vászon és szűrt kép szorzása (2.793 ms),
+    17.503/kép mentése és megjelenítése (17.503 ms)
+}
+\end{tikzpicture}
+\caption{Pencil sketch filter alkalmazásának időigénye (összesen 93.661 ms)}
+\label{fig:pie2}
+\end{figure}
 
-\textbf{Aquarelle-style filter}
+\SubSection{Cartoon filter}
 
-Image loading time in ms: 6.432\\
-Creating windows time in ms: 50.489\\
-Avarage blur time in ms: 1.26\\
-Mean shift segmentation time in ms: 483.213\\
-Write and show image time in ms: 13.407\\
-Image processing time in ms: 554.927
+A \textit{Cartoon filter} esetében láthatjuk, hogy a medián szűrés mennyire számításigényes művelet, mivel a kernelen belüli értékek rendezése szükséges hozzá (\ref{fig:pie3}. ábra). A Laplace élkiemelés, küszöbölés és a maszk alkalmazása is számítási időt tekintve lényegesen kisebb.
+
+% Image loading time in ms: 4.959\\
+% Create windows time in ms: 51.136\\
+% Median filtering time in ms: 9.916\\
+% Laplacian edge detectation time in ms: 0.961\\
+% Thresholding time in ms: 0.467\\
+% Copy mask to the image time in ms: 0.838\\
+% Write and show images time in ms: 19.56\\
+% Image processing time in ms: 88.059\\\\
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\pie[text=legend, sum=88.059]{
+    4.959/képbetöltés (4.959 ms),
+    51.136/ablak létrehozása (51.136 ms),
+    9.916/medián szűrő (9.916 ms),
+    0.961/Laplace élkiemelés (0.961 ms),
+    0.467/küszöbölés (0.467 ms),
+    0.838/maszk alkalmazása (0.838 ms),
+    19.56/kép mentése és megjelenítése (19.56 ms)
+}
+\end{tikzpicture}
+\caption{Cartoon filter alkalmazásának időigénye (összesen 88.059 ms)}
+\label{fig:pie3}
+\end{figure}
+
+\SubSection{Aquarelle-style filter}
+
+A vízfestékszerű hatáshoz használt \textit{mean shift} szegmentálás nagyon számításigényes művelet, ahogy az a feldolgozási lépések számítási idejéből látszik (\ref{fig:pie4}. ábra). Az előzőekhez képest ez a szűrő az, amelyik a legtöbb számítást vette igénybe.
+
+% Image loading time in ms: 6.432\\
+% Creating windows time in ms: 50.489\\
+% Avarage blur time in ms: 1.26\\
+% Mean shift segmentation time in ms: 483.213\\
+% Write and show image time in ms: 13.407\\
+% Image processing time in ms: 554.927
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\pie[text=legend, sum=554.927]{
+    6.432/kép betöltése (6.432 ms),
+    50.489/ablak létrehozása (50.489 ms),
+    1.26/átlagoló szűrő (1.26 ms),
+    483.213/\textit{mean shift} szegmentálás (483.213 ms),
+    13.407/kép mentése és megjelenítése (13.407 ms)
+}
+\end{tikzpicture}
+\caption{Aquarelle-style filter alkalmazásának időigénye (összesen 554.927 ms)}
+\label{fig:pie4}
+\end{figure}
 
 \Section{Szűrők tesztelése videókon és valós időben}
 
 Ebben a részben, a videók valamint az élő kép feldolgozási idejét mérem képkocka per másodpercben, azaz fps-ben. Illetve az esetleges képi hibákról és azok kijavításási lehetőségeiről ejtek néhány szót.
 
-\textbf{Cartoon-style filter}
+\SubSection{Cartoon-style filter}
 
 Ha futtatjuk az első filtert, látható, hogy a videó képe vibrál néhány pontban. Ezeket kilehet javítani, ha veszünk egy bizonyos kernel méretet és megvizsgáljuk, látjuk hogy a kernelen belül a színek túl nyomó többségben megegyeznek, viszont van néhány pont ami fekete, akkor a fekete pontokat átállítjuk olyan színüre, ami többségben van a kernelen belül. A videóknál, valamint a valós idejű feldolgozásnál mértem képkocka per másodpercet is. Látszik, hogy nem éri el a 24 fps-t sem a videó, sem a kamera képe ennél a szűrőnél. Azért 24 fps mivelt azt már az emberi szem folyamatosnak érzékeli, itt viszont kissé lassabb a kép. A méréseim alapján a videókon átlagosan 15-16 közötti képkocka szám van, a kamera képén 12-15.
 
-\textbf{Pencil sketch filter}
+\SubSection{Pencil sketch filter}
 
 Számításaim alapján ez a szűrő volt az, ami már a videókon majdnem elérte a kellő fps számot, hogy folyamatos legyen. Itt videókon 20-21 között volt a képkocka szám, valós időben pedig 15-16. Itt nem volt annyira sok az egyes műveletek számítási ideje.
 
-\textbf{Cartoon filter}
+\SubSection{Cartoon filter}
 
 Erről a szűrőről is elmondható ugyan az mint a Cartoon-style filterről, hogy a kép vibrál. Itt is alkalmazható lehetne az a megoldás, amit ott már leírtam. Itt a képkocka szám másodpercenként a videókban 17-18 között volt, valós időben 13-14 között.
 
-\textbf{Aquarelle-style filter}
+\SubSection{Aquarelle-style filter}
 
 Mint látható a képernyőnkön, ha futtatjuk a programot videóval vagy a saját kameránk képével eléggé "szaggat", vagyis a képkocka szám per másodperc, nagyon alacsony. Láthatjuk, hogy az előző képi tesztekben is ennek a szűrőnek volt a legnagobb feldolgozási ideje. A mean shift szegmentáció olyan mértékű számítás igényt jelent a programnak, hogy nem tudja teljesíteni a kívánt fps számot a számítógépem. Itt átlagosan a videón 3,2-3,5 közötti képkocka számot mértem, élő képen 2,5-2,8.
 
 %FPS counter - https://ariandy1.wordpress.com/2013/02/19/calculating-fps-in-opencv-for-live-capture/
 %4-6 oldal
+
