@@ -102,7 +102,7 @@ Nagyság szerint sorba rendezve ezeket az értékeket, úgy hogy  11, 17, 22, 23
 %Kató tanár úr jegyzet
 \SubSection{Kétoldalú szűrő}
 
-A kétoldalaú szűrő egy nem lineáris, élvédő és zajcsökkentő simító szűrő a képekhez. Az egyes képpontok intenzitását a közeli pixelek intenzitásának súlyozott átlagával helyettesíti. Ez a súly Gauss eloszláson is  alapulhat. Elengedhetetlen, hogy a súlyok nem csak az euklideszi képpontok távolságától, hanem a radiometriai különbségektől is függnek (például tartománykülönbségek, például színintenzitás, mélységi távolság stb.). Ez éles széleit megőrzi. A kétoldalú-szűrő az alábbi alakban írható föl:
+A kétoldalaú szűrő egy nem lineáris, élvédő és zajcsökkentő simító szűrő a képekhez \cite{bilateral}. Az egyes képpontok intenzitását a közeli pixelek intenzitásának súlyozott átlagával helyettesíti. Ez a súly Gauss eloszláson is  alapulhat. Elengedhetetlen, hogy a súlyok nem csak az euklideszi képpontok távolságától, hanem a radiometriai különbségektől is függnek (például tartománykülönbségek, például színintenzitás, mélységi távolság stb.). Ez a kép éles széleit megőrzi. A kétoldalú-szűrő az alábbi alakban írható föl:
 \begin{align*}
 I^{filtered}(x) &=
 \frac{1}{W_p}\sum_{x_i\in\Omega}{I(x_i)f_r(\left \| I(x_i)-I(x) \right \|)g_s(\left \| x_i-x \right \|)}, \\
@@ -135,20 +135,20 @@ I_{D}(i,j) =
 $$
 ahol az $I_D$ a pixel $(i, j)$ zajcsökkentés intenzitása.
 
-Paraméterek: A kétoldalú szűrőt két paraméterrel lehet irányítani: $\sigma_r$ és $\sigma_s$. Ezen paraméterek hatását \aref{fig:bilateral}. ábrán láthatjuk.
+A kétoldalú szűrőt két paraméterrel lehet irányítani: $\sigma_r$ és $\sigma_s$. Ezen paraméterek hatását \aref{fig:bilateral}. ábrán láthatjuk.
 \begin{itemize}
 \item Amikor a $\sigma_r$ paraméter növekszik, a kétoldalas szűrő fokozatosan megközelíti a Gauss konvolúciót, mivel a Gauss-tartomány kiszélesedik és kilapul, ami azt jelenti, hogy a kép intenzitási intervalluma alatt majdnem állandóvá válik.
-\item Ahogy a $\sigma_s$ térbeli paraméter nő, a nagyobb tulajdonságok simábbak.
+\item Ahogy a $\sigma_s$ térbeli paraméter nő, a hozzá tartozó nagyobb értékek szerint a kép simább lesz.
 \end{itemize}
 
 \begin{figure}[h!]
 \centering
-\epsfig{file=kepek/bilateral.png,scale=0.65}
+\epsfig{file=kepek/bilateral.png,scale=0.7}
 \caption{A $\sigma_r$ és a $\sigma_s$ paraméterek hatása, valamint a Gauss elmosással való összehasonlítás.} 
 \label{fig:bilateral}
 \end{figure}
 
- \Aref{fig:bilateral1}. ábrán láthatunk egy példát a kétoldalú szűrő elmosására egy bemeneti képen amin az élek megőrzésre kerülnek.
+\Aref{fig:bilateral1}. ábrán láthatunk egy példát a kétoldalú szűrő elmosására egy bemenetként adott képen, amelyen így az élek megőrzésre kerülnek.
 
 \begin{figure}[h!]
 \centering
@@ -156,13 +156,17 @@ Paraméterek: A kétoldalú szűrőt két paraméterrel lehet irányítani: $\si
 \caption{A kétoldalú szűrő hatása egy bemeneti képen.} 
 \label{fig:bilateral1}
 \end{figure}
+
 %wikipédia
 %https://people.csail.mit.edu/sparis/bf_course/course_notes.pdf
+
+\newpage
+
 \Section{Éldetektálási módszerek}
 
 Az éldetektálás számos matematikai módszert foglal magába, amelyek olyan pontok azonosítását célozzák meg egy képen, amelyeknél a kép fényereje élesen megváltozik. A kép egy szeletén vizsgálva az intenzitás-profilt jól azonosíthatóak az objektumok határainak megfelelő változások. Az intenzitás-gradiensből következtethetünk az élek helyére és irányára. Jellegzetes élprofilokat láthatunk \aref{fig:elprofilok}. ábrán.
 
-\begin{figure}[ht]
+\begin{figure}[h!]
 \centering
 \epsfig{file=kepek/elprofilok.png,scale=0.45}
 \caption{Példa tipikus lépcső, tető, vonal és zajos élprofilokra} 
@@ -173,7 +177,7 @@ A képfüggvény kétváltozós, tehát parciális deriváltakból álló gradie
 $$
 \nabla f =
 \left[ \genfrac{}{}{0pt}{}{G_x}{G_y} \right] =
-\left[ \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}  \right]^{T.}$$
+\left[ \frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}  \right]^{T}.$$
 A hossza a változás nagyságával egyenlő: 
 $$
 \left\| \nabla f \right \| =
@@ -208,19 +212,19 @@ $$\begin{bmatrix}
 -1&0  &1 \\ 
 -2&0  &2 \\ 
 -1&0  &1 
-\end{bmatrix} 
+\end{bmatrix},
 \qquad
 \begin{bmatrix}
 -1&-2  &-1 \\ 
 0&0  &0 \\ 
 1&2  &1 
-\end{bmatrix}
+\end{bmatrix}.
 $$
 Az első mátrix a vízszintes, a második mátrix a függőleges kernel. A bal oldali kernel megközelíti a deriváltat az $x$ tengely mentén, a jobb oldali pedig az $y$ tengely mentén. Ezen információk felhasználásával számíthatjuk ki az alábbiakat:
 \begin{itemize}
 \item magnitudója vagy "erőssége" az élnek: $\sqrt{G_{x}^{2}+G_{y}^{2}}$,
 \item megközelítő erősség: $ \left\| G_x \right \| + \left\| G_y \right \|$,
-\item az él iránya: $arctan(\frac{G_y}{G_x})$.
+\item az él iránya: $arctan\left(\frac{G_y}{G_x}\right)$.
 \end{itemize}
 
 %Kató tanár úr jegyzet
@@ -275,7 +279,7 @@ A kép élei különböző irányokban jelennek meg, így a Canny algoritmus né
 $$
 G = \sqrt{G_{x}^{2}+G_{y}^{2}},
 \quad
-\Theta = arctan2\left(\frac{G_y}{G_x}\right)
+\Theta = arctan2\left(\frac{G_y}{G_x}\right).
 $$
 ahol $G$ a hypot függvény segítségével számítható ki, és az arctan2 az arctangens függvény két argumentummal.
 
