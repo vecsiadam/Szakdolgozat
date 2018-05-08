@@ -2,14 +2,16 @@
 
 \Chapter{Összegzés}
 
-A dolgozat a művészi szűrők témakörét mutatta be azok matematikai modelljén és néhány saját szűrőmegvalósítás segítségével.
+A dolgozat a művészi szűrők témakörét mutatta be azok matematikai modelljén és néhány saját szűrő megvalósítás segítségével.
 
-Tesztekkel meg sikerült vizsgálni, hogy a szűrők használata során az egyes lépések számítási ideje milyen. Ezáltal jól láthatóvá váltak a képfeldolgozás szempontjából költségesebb műveletek.
-
+Ez előtt még nem foglalkoztam sem képfeldolgozással, sem azokkal algoritmusokkal amiket itt említettem és használtam. Mindíg is érdekelt, hogy ez hogyan is működik. Az első pár hónapban komoly háttér kutatásokat végeztem, mind az algoritmusok és azok matematikai hátterével kapcsolatban.
 % Önértékelés: Mi az ami érdekesebbnek bizonyult?
 
+Mint az előző fejezetekben olvasható, négy saját szűrőt raktam össze amik, rajzfilm, ceruza rajz szerű, továbbá festmény jellegűek. Ezek mindegyikének bemutattam a matematikáját, valamint az implementációját.  Néhányat ezek közül, leírások segítségével állítottam össze, de volt olyan amit saját ötlet alapján készült. A filterek algoritmusainak matematikai háttere az előző háttér kutatás után már nem volt ismeretlen. Igy már csak egy eszköz kellett, amivel meg is lehetett valósítani ezeket. 
 % Az egyes szűrőkre külön ki lehet térni.
 
+Ez előtt nem használtam soha sem az OpenCV könyvtárat. A C++ programozási nyelv tünt a legcélszerűbbnek, eleinte C-ben kezdtem a kódolást, de több olyan algoritmus implementációja hiányzik az OpenCV könyvtárból ami C++-ban viszont megtalálható, ezen algoritmusokat viszont fontosak voltak a saját készítésű filterekhez. Az algoritmusok a könyvtárban könnyedén használhatók, mint ahogy a \aref{chap:implement}. fejezetben részletezem. Egyszerűen megadjuk a kívánt paramétereket és már is elértük a kívánt műveletet.
 % C++ -al, OpenCV-vel kapcsolatos tapasztalatok.
 
+Tesztekkel meg sikerült vizsgálni, hogy a szűrők használata során az egyes lépések számítási ideje milyen. Ezáltal jól láthatóvá váltak a képfeldolgozás szempontjából költségesebb műveletek. A videókon, továbbá a valós időben való kép feldolgozások a saját készítésű szűrők esetén néhány helyen még nem az igazi. A videók képe vibrál, ahogy \aref{chap:tests}. fejezetben is említettem, de akár látható is a dolgozathoz csatolt CD-mellékleten, ha futtatjuk ezen alkalmazásokat. Ezek kijavítására javasoltam egy példát, amit még csak elméleti szinten említettem. Esetleg ennek a kidolgozására lehetne szánni még időt.
 % További kutatási/fejlesztési lehetőségek: Mi az amit még célszerű lehet jobban kidolgozni, folytatni?
