@@ -6,19 +6,17 @@ A fényképek és videók készítése napjainkban már teljesen természetessé
 
 A dolgozat célja, hogy bemutassa ezen szűrők matematikai hátterét, megvalósítási módját, illetve saját készítésű szűrőket is felvonultasson.
 
-Fiatalok körében eléggé elterjedtek a kép feldolgozással kapcsolatos alkalmazások, gondoljunk csak bele, hogy a napijainkban használatos közösségi alkalmazások mindegyikében megtalálható ez az opció. Akár arc felismeréssel képeken, valós időben és mozgóképeken, vagy akár előre kidolgozott szűrők segítségével, amik elmossák a szineket, kiemelik az éleket vagy valamilyen módon átalakítják a képeket. Ezekre is ki fogok térni a dolgozat során.
+Fiatalok körében eléggé elterjedtek a kép feldolgozással kapcsolatos alkalmazások, gondoljunk csak bele, hogy a napijainkban használatos közösségi alkalmazások mindegyikében megtalálható ez az opció. Akár arc felismeréssel képeken, valós időben és mozgóképeken, vagy akár előre kidolgozott szűrők segítségével, amik elmossák a színeket, kiemelik az éleket vagy valamilyen egyéb módon átalakítják a képeket. Ezekre is ki fogok térni a dolgozatomban.
 % népszerű alkalmazások
 
-Részletezni szeretném a különböző képfeldolgozási műveletek matematikai hátterét is. Láthatók lesznek, a matematikai leírásoknál példák is, valamint ábrák.
+Részletezem a különböző képfeldolgozási műveletek matematikai hátterét. Láthatók lesznek, a matematikai leírásoknál példákkal és ábrákkal illusztrálva.
 % matematikai háttér
 
-Saját készítésű szűrőim rajzfilm, ceruza rajz szerű, valamint festmény jellegűek. Szűrőket képekkel lépésről lépésre szeretném bemutatni, továbbá a C vagy C++ implementációját is részletezni fogom.
+Saját készítésű szűrőim rajzfilm, ceruza rajz szerű, valamint festmény jellegűek. A szűrőket képekkel lépésről-lépésre mutatom be, továbbá a C++ implementációját is részletezem.
 % saját algoritmusok
 
-Mint említettem szűrőimet C vagy C++ programozási nyelven szeretném megírni, OpenCV könyvtár segítségével. Az OpenCV az egy ingyenes, képfeldolgozási algoritmusak tartalmazó könyvtár. A dolgozatom során, fogom részletezni magát a könyvtárat is.
+Mint említettem szűrőimet C++ programozási nyelven szeretném megírni, OpenCV függvénykönyvtár segítségével. Az OpenCV az egy ingyenes, képfeldolgozási algoritmusokat tartalmazó könyvtár. A dolgozatom során ennek elemeire is kitérek.
 % OpenCV
 
-A végén szeretnék néhány tesztet is készíteni, azon szűrőkre amiket én fogok elkészíteni. A tesztek a szűrők feldolgozási idejére, valamint az egyes lépések feldolgozási idejére vonatkozik képek esetén. Tervben van az is, hogy a szűrőket megpróbálom megvalósítani úgy, hogy ne csak képek feldolgozására legyen alkalmas, hanem videón, esetleg valós időben is működjön. Ezek tesztelésére, egy képkocka per másodperc tesztet szeretnék alkalmazni, amivel kiderül, hogy egy másodperc alatt hány képkockát tudunk előállítani az egyes szűrők esetén.
+A dolgozat végén tesztek segítségével megvizsgálom a saját készítésű szűrőket. A tesztek elsősorban a szűrők feldolgozási idejére, valamint az egyes lépések feldolgozási idejére vonatkoznak. A szűrők készítésénél szempont, hogy azokat ne csak statikus képekre, hanem videókra és kameraképre is lehessen alkalmazni. Ezek tesztelésére, egy képkocka per másodperc tesztet használok, amivel kiderül, hogy egy másodperc alatt hány képkockát tudunk előállítani az egyes szűrők esetén.
 % tesztek
-
-A következő fejezeteben a művészi jellegű szűrőket szeretném prezentálni.

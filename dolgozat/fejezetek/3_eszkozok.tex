@@ -6,13 +6,13 @@
 
 A következő szakaszokban annak bemutatására kerül majd sor, hogy a tervezett művészi szűrők létrehozásához milyen matematikai apparátusra van szükség. Ez alapvetően a különféle szűrési eljárások megvalósítását takarja példákkal illusztrálva.
 
-A módszerek digitális képfeldolgozás területén közismertnek tekinthetők. A témakör feldolgozásához Kató Zoltán \textit{Digitális képfeldolgozás} című kurzusának anyagai szolgáltak alapul \cite{kato}.
+A módszerek digitális képfeldolgozás területén közismertnek tekinthetők. A témakör feldolgozásához Czap László \cite{czap} és Kató Zoltán \cite{kato} egyetemi kurzusainak anyagai szolgáltak alapul.
 
 \SubSection{Átlagoló szűrő}
 
 Az átlagoló szűrő segítségével simítani lehet a képet. A képpontok közelebb kerülnek a környezetük átlagához, azaz a kép "simább" lesz, a szűrt kép intenzitásértékei a kiinulási kép intenzitástartományában maradnak. Csökkenti a zajt, de elmossa az éleket igy homályossá teszi a képet.
 
-\example{Itt látható a átlagoló szűrésre egy példa, egy képpont 3x3 as környezete:
+\example{Itt látható a átlagoló szűrésre egy példa, egy képpont $3 \times 3$-as környezete:
 $$
 \frac{1}{9} \times
 \begin{bmatrix}
@@ -34,7 +34,7 @@ $$}
 
 \SubSection{Gauss szűrő}
 
-A Gauss szűrő egy bemeneti kép és egy Gauss-kernel konvoluciójával jön létre. Minden egyes képpont értéket a környékének súlyozott átlagaként számolunk úgy, hogy a képpont eredeti értékének a legnagyobb a súlya, míg a távoliak kisebb súlyt kapnak. Ez olyan elmosódást eredményez, amely jobban védi a széleket, mint más egyenletes elmosódási algoritmusok. Egy Gauss függvény egyenlete egy dimenzióban az alábbi
+A Gauss szűrő egy bemeneti kép és egy Gauss-kernel konvoluciójával jön létre. Minden egyes képpont értéket a környékének súlyozott átlagaként számolunk úgy, hogy a képpont eredeti értékének a legnagyobb a súlya, míg a távoliak kisebb súlyt kapnak. Ez olyan elmosódást eredményez, amely jobban védi a széleket, mint más egyenletes elmosódási algoritmusok. Egy Gauss függvény felírása egy dimenzióban az alábbi
 $$
 G(x) =
 \frac{1}{\sqrt{2\pi\sigma^{2}}}
@@ -48,12 +48,17 @@ A Gauss függvény grafikonját \aref{fig:gauss}. ábrán láthatjuk.
 \begin{figure}[h!]
 % \centering
 \begin{tikzpicture}
-\begin{axis}[every axis plot post/.append style={
-  mark=none,domain=-4:4,samples=50,smooth},
-  axis x line=bottom,
-  axis y line=left,
-  enlargelimits=upper]
-  \addplot {gauss(0, 1)};
+\begin{axis}[
+    xmin=-4.5,
+    xmax=4.5,
+    ymin=0,
+    ymax=0.45,
+    xlabel=$x$,
+    ylabel=$G(x)$,
+    axis x line=bottom,
+    axis y line=left
+]
+\addplot[mark=none, smooth, blue] {gauss(0, 1)};
 \end{axis}
 \end{tikzpicture}
 \caption{Az egydimenziós Gauss függvény $\mu = 0$ és $\sigma = 1$ paraméterekkel}
@@ -285,7 +290,7 @@ ahol $G$ a hypot függvény segítségével számítható ki, és az arctan2 az 
 
 Az élirány-szög négy függőleges, vízszintes és két átlós (0 , 45 , 90  és 135 fokok) függőleges szögek egyikére kerekítve van. Az egyes színsávokba eső élek iránya meghatározott szögértékekre van beállítva.
 
-\subsubsection{3. Nem-maximumok elhagyása:}
+\subsubsection{3. Nem-maximumok elhagyása}
 
 A nem-maximumok elhagyása a "vékony" élekre alkalmazzák. A gradiens kiszámítása után a gradiens értékből kivont él még mindig homályos. A 3. kritérium vonatkozásában csak egy pontos válasz lehet az élre. Így a nem-maximumok elhagyása segíthet elhagyni a gradiens értékeket (0-ra állítva), kivéve a lokális maximumokat, amelyek a legerősebb intenzitásérték-változást jelzik. Az algoritmus a következő, minden pixelre a gradiens képen:
 \begin{itemize}
@@ -295,7 +300,7 @@ A nem-maximumok elhagyása a "vékony" élekre alkalmazzák. A gradiens kiszám�
 
 Bizonyos implementációkban az algoritmus a folyamatos gradiens irányokat különálló diszkrét irányokba sorolja, majd egy $3 \times 3$ szűrőt rak az előző lépés kimenetre. Minden pixelben elhagyja a középső képpont él-erősségét (az értékét 0-ra állítva), ha nagysága nem nagyobb, mint a két szomszéd nagysága a gradiens irányba.
 
-\subsubsection{4. Hiszterézis küszöbölés:}
+\subsubsection{4. Hiszterézis küszöbölés}
 
 Eddig az erős élű képpontokat minden bizonnyal be kell vonni a végső élbe, mivel ezek a kép valódi éleiből származnak.Vannak azonban viták a gyenge élű képpontokról, mivel ezek a pixelek kiválaszthatók az igazi élről, vagy a zaj/színváltozatokról. Pontos eredmény elérése érdekében az utóbbi okok által okozott gyenge éleket el kell távolítani. Általában gyenge él pixeleket okoznak, az igazi élek amikor erős élű pixelekhez kapcsolódnak, amíg a zajok nem kapcsolódnak hozzá. Az élkapcsolat nyomon követéséhez a blob elemzést kell végre hajtani, ami egy gyenge élű pixel és 8-as kapcsolatú szomszédos pixelek figyelembevétele. Mindaddig, amíg van egy erős élű pixel, amely részt vesz a blob elemzésben, a gyenge élű pontot lehet azonosítani, amit meg is kell őrizni.
 
@@ -430,13 +435,20 @@ Az $(i,j)$ adott környezetében, $\mu(i,j)$ a középértéket jelenti, $\sigma
 Ha $k < 0$, akkor sötét az objektum,
 Ha $k > 0$, akkor világos az objektum.
 
-A változó küszöbértékre láthatunk egy szemléltetést \aref{fig:niblack}. ábrán.
+A globális és a lokálisan változó küszöbértékre láthatunk egy-egy szemléltetést \aref{fig:const_thresh}. és \aref{fig:adaptive_thresh}. ábrákon.
 
-\begin{figure}[ht]
+\begin{figure}
 \centering
-\epsfig{file=kepek/niblack.png,scale=0.65}
-\caption{Változó küszöbérték} 
-\label{fig:niblack}
+\includegraphics[scale=0.5]{kepek/const_thresh.png}
+\caption{Intenzitásértékek küszöbölése globális küszöbérték mellett}
+\label{fig:const_thresh}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.5]{kepek/adaptive_thresh.png}
+\caption{Intenzitásértékek küszöbölése lokális/adaptív küszöbértékkel}
+\label{fig:adaptive_thresh}
 \end{figure}
 
 %Kató tanár úr jegyzet
