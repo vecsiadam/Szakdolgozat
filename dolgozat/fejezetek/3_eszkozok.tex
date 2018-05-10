@@ -14,6 +14,7 @@ Az átlagoló szűrő segítségével simítani lehet a képet. A képpontok kö
 
 \example{Itt látható a átlagoló szűrésre egy példa, egy képpont $3 \times 3$-as környezete:
 $$
+A =
 \frac{1}{9} \times
 \begin{bmatrix}
 54 &26  &32 \\ 
@@ -97,6 +98,7 @@ formában végezhetjük el.
 A medián szűrés eredményét az $S$ környezet mérete (és alakja) határozza meg.
 
 \example{Itt látható a medián szűrésre egy példa, egy képpont $3 \times 3$ méretű környezete: $$
+M =
 \begin{bmatrix}
 54 &25  &32 \\ 
 17 &37  &22 \\ 
@@ -213,12 +215,15 @@ A gradiens közelítéséhez konvolúciós maszkot is használhatunk.
 % TODO: Roberts éldetektálást is megemlíteni!
 
 A Sobel éldetektáló egy gradiens alapú módszer. Ez elsőrendű deriváltakkal működik. A kép első deriváltját külön számítja az $x$ és $y$ tengelyekhez. A deriváltak csak közelítések (mivel a képek nem folytonosak). Ezek közelítéséhez az alábbi kernelt használják a konvolúcióhoz:
-$$\begin{bmatrix}
+$$
+G_x =
+\begin{bmatrix}
 -1&0  &1 \\ 
 -2&0  &2 \\ 
 -1&0  &1 
 \end{bmatrix},
 \qquad
+G_y =
 \begin{bmatrix}
 -1&-2  &-1 \\ 
 0&0  &0 \\ 
@@ -238,12 +243,15 @@ Az első mátrix a vízszintes, a második mátrix a függőleges kernel. A bal 
 \SubSection{Laplace éldetektálás}
 
 A Laplace éldetektáló csak egy kernelt használ. Másodfoku deriváltakat számol ki egy lépésben. Itt van néhány elterjedt kernel:
-$$\begin{bmatrix}
+$$
+G_1 =
+\begin{bmatrix}
  0 & -1  & 0 \\ 
 -1 &  4  &-1 \\ 
  0 & -1  & 0 
 \end{bmatrix} 
 \qquad
+G_2 =
 \begin{bmatrix}
 -1 & -1 & -1 \\ 
 -1 &  8 & -1 \\ 
