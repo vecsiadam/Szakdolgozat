@@ -19,11 +19,14 @@
   \pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}%
 }
 
-\linespread{1.2}
+%\linespread{1.2}
 
 \begin{document}
 
 \include{cimlap/cimlap}
+
+\pagestyle{empty}
+\include{feladatkiiras/feladatkiiras}
 
 \cleardoublepage
 \pagenumbering{gobble}
@@ -33,6 +36,7 @@
 
 \newpage
 
+\linespread{1.2}
 \pagestyle{fancy}
 
 \include{fejezetek/1_bevezetes}
@@ -43,11 +47,8 @@
 \include{fejezetek/6_tesztek}
 \include{fejezetek/7_osszegzes}
 
-\include{hasznalat/hasznalat}
-
 \include{irodalomjegyzek/irodalom}
 
-\pagestyle{empty}
-\include{feladatkiiras/feladatkiiras}
+\include{hasznalat/hasznalat}
 
 \end{document}
