@@ -28,8 +28,6 @@ $$
 \frac{54+26+32+17+36+24+11+23+47}{9} =
 \frac{270}{9} = 30.
 $$}
-
-%http://www.tankonyvtar.hu/en/tartalom/tamop412A/2011-0063_15_gepi_latas/ch05s02.html
 %Kató tanár úr jegyzet
 %wikipédia
 
@@ -75,7 +73,6 @@ $$
 ahol az $x$ a vízszintes tengely eredetétől való távolság, az $y$ a függőleges tengely eredetétől való távolság, a $\sigma$ pedig a Gauss eloszlás szórása. Két dimenzióban alkalmazva, ez a képlet olyan felületet hoz létre, amelynek körvonalait koncentrikus körök alkotják, a Gauss-eloszlás pedig a középpontból indul.
 %wikipédia
 %Kató tanár úr jegyzet
-%http://fiveko.com/tutorials/image-processing/gaussian-blur-filter/
 
 \SubSection{Medián szűrő}
 
@@ -212,9 +209,7 @@ A gradiens közelítéséhez konvolúciós maszkot is használhatunk.
 
 \SubSection{Sobel éldetektálás}
 
-% TODO: Roberts éldetektálást is megemlíteni!
-
-A Sobel éldetektáló egy gradiens alapú módszer. Ez elsőrendű deriváltakkal működik. A kép első deriváltját külön számítja az $x$ és $y$ tengelyekhez. A deriváltak csak közelítések (mivel a képek nem folytonosak). Ezek közelítéséhez az alábbi kernelt használják a konvolúcióhoz:
+A Sobel éldetektáló egy gradiens alapú módszer \cite{sobel}. Ez elsőrendű deriváltakkal működik. A kép első deriváltját külön számítja az $x$ és $y$ tengelyekhez. A deriváltak csak közelítések (mivel a képek nem folytonosak). Ezek közelítéséhez az alábbi kernelt használják a konvolúcióhoz:
 $$
 G_x =
 \begin{bmatrix}
@@ -242,7 +237,7 @@ Az első mátrix a vízszintes, a második mátrix a függőleges kernel. A bal 
 
 \SubSection{Laplace éldetektálás}
 
-A Laplace éldetektáló csak egy kernelt használ. Másodfoku deriváltakat számol ki egy lépésben. Itt van néhány elterjedt kernel:
+A Laplace éldetektáló csak egy kernelt használ \cite{sobel}. Másodfoku deriváltakat számol ki egy lépésben. Itt van néhány elterjedt kernel:
 $$
 G_1 =
 \begin{bmatrix}
