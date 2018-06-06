@@ -70,7 +70,6 @@
 \title[Alternatív grafikus megjelenítési módok]{Alternatív grafikus megjelenítési módok}
 \author[Vécsi Ádám]{\textbf{Vécsi Ádám}}
 \institute[]{Miskolci Egyetem}
-% \date{ME, 2014. november 6.}
 \date{Miskolci Egyetem, 2018. június 12.}
 
 % --------------------
@@ -164,6 +163,8 @@ $$
 \frametitle{Matematikai eszközök}
 
 \textbf{Szegmentálás}
+
+A célja egyszerűsíteni és/vagy megváltoztatni a kép reprezentációját ezzel könnyebbé téve a kép elemzését.
 
 \begin{itemize}
 \item Mean shift algoritmus
@@ -313,15 +314,33 @@ A cél a megfelelő globális és lokális küszöbértékek meghatározása.
 
 \begin{itemize}
 \item Beépített művészi szűrők áttekintése
-\item Mind a 4 szűrőnek külön C++ projekt
+\begin{itemize}
+\item Detail Enhancing filter
+\item Stylization
+\item Edge Preversing
+\item Pencil sketch
+\end{itemize}
+\begin{center}
+\includegraphics[scale=0.23]{kepek/beepitett_szurok/beepitett_szurok.jpg}
+\end{center}
+\item Mind a 4 saját szűrőnek külön C++ projekt
 \end{itemize}
 
 \medskip
 
 \textbf{Megoldandó feladatok}
-
 \begin{itemize}
 \item Képek betöltése, ablak megjelenítése
+\end{itemize}
+
+\end{frame}
+
+%\medskip
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Implementáció}
+
+\begin{itemize}
 \item Elmosásos szűrők
 \end{itemize}
 
@@ -337,13 +356,6 @@ medianBlur(source, median, kernel_size);
 \begin{cpp}
 Laplacian(source, edges, CV_8U, kernel);
 \end{cpp}
-
-\end{frame}
-
-% --------------------
-\begin{frame}[fragile]
-\frametitle{Implementáció}
-
 
 \begin{itemize}
 \item Szegmentálás
