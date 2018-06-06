@@ -381,6 +381,7 @@ threshold(src, res, thr, maxval, THRESH_BINARY_INV);
 \frametitle{Cartoon-style filter számítási ideje}
 \begin{figure}[h!]
 \centering
+\resizebox{!}{4.5cm}{
 \begin{tikzpicture}
 \pie[text=legend, sum=113.229]{
     4.795/képbetöltés (4.795 ms),
@@ -394,6 +395,7 @@ threshold(src, res, thr, maxval, THRESH_BINARY_INV);
     21.723/kép mentése és megjelenítése (21.723 ms)
 }
 \end{tikzpicture}
+} \\
 Cartoon style filter alkalmazásának időigénye (összesen 113.229 ms)
 \label{fig:pie1}
 \end{figure}
@@ -404,6 +406,7 @@ Cartoon style filter alkalmazásának időigénye (összesen 113.229 ms)
 \frametitle{Pencil sketch számítási ideje}
 \begin{figure}[h!]
 \centering
+\resizebox{!}{4.5cm}{
 \begin{tikzpicture}
 \pie[text=legend, sum=93.661]{
     9.775/képbetöltés (9.775 ms),
@@ -416,6 +419,7 @@ Cartoon style filter alkalmazásának időigénye (összesen 113.229 ms)
     17.503/kép mentése és megjelenítése (17.503 ms)
 }
 \end{tikzpicture}
+} \\
 Pencil sketch filter alkalmazásának időigénye (összesen 93.661 ms)
 \label{fig:pie2}
 \end{figure}
@@ -425,21 +429,60 @@ Pencil sketch filter alkalmazásának időigénye (összesen 93.661 ms)
 \begin{frame}[fragile]
 \frametitle{Összegzés}
 
+\begin{itemize}
+\item Áttekintettem a képfeldolgozási módszerek matematikai hátterét.
+\item Megismerkedtem a \textit{C++}-al és az \textit{OpenCV}-vel.
+\item Készítettem 4 saját művészi jellegű szűrőt.
+\item Ezeket teszteltem képek és videók esetében is.
+\item Lemértem és elemeztem az egyes lépések számítási idejét.
+\end{itemize}
+
 \end{frame}
 
 % --------------------
 \begin{frame}[fragile]
 \frametitle{Hivatkozások}
 
-[1] Papari, Giuseppe, Nicolai Petkov, and Patrizio Campisi. Artistic edge and corner enhancing smoothing. IEEE Transactions on Image Processing 16.10 (2007): 2449- 2462.\\
+\begin{thebibliography}{9}
 
-[2] Kató Zoltán: Digitális képfeldolgozás, egyetemi kurzus, Szegedi Tudományegye- tem,http://www.inf.u-szeged.hu/ kato/teaching/DigitalisKepfeldolgozasTG, 2014.\\
+\bibitem[1]{1}
+Papari, Giuseppe, Nicolai Petkov, and Patrizio Campisi. Artistic edge and corner enhancing smoothing. IEEE Transactions on Image Processing 16.10 (2007): 2449- 2462.
 
-[3] Michael Beyeler: How to create a cool cartoon effect with OpenCV and Python, http://www.askaswiss.com/2016/01/ how-to-create-cartoon-effect-opencv-python.html, 2016. január 5.\\
+\bigskip
 
-[4]Michael Beyeler: How to create a beautiful pencil sketch effect with OpenCV and Python, http://www.askaswiss.com/2016/01/ how-to-create-pencil-sketch-opencv-python.html, 2016. január 13.\\
+\bibitem[2]{2}
+Kató Zoltán: Digitális képfeldolgozás, egyetemi kurzus, \\
+Szegedi Tudományegyetem, \\
+\texttt{http://www.inf.u-szeged.hu/ kato/teaching/DigitalisKepfeldolgozasTG}, \\
+2014.
 
-[5] Shervin Emami: Mastering OpenCV with Practical Computer Vision Projects, Packt Publishing, 2012.
+\bigskip
+
+\bibitem[3]{3}
+Michael Beyeler: How to create a cool cartoon effect with OpenCV and Python, http://www.askaswiss.com/2016/01/ how-to-create-cartoon-effect-opencv-python.html, \\
+2016. január 5.
+
+\end{thebibliography}
+
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Hivatkozások}
+
+\begin{thebibliography}{9}
+
+\bibitem[4]{4}
+Michael Beyeler: How to create a beautiful pencil sketch effect with OpenCV and Python, http://www.askaswiss.com/2016/01/ how-to-create-pencil-sketch-opencv-python.html, \\
+2016. január 13.
+
+\bigskip
+
+\bibitem[5]{5}
+Shervin Emami: Mastering OpenCV with Practical Computer Vision Projects, Packt Publishing, 2012.
+
+\end{thebibliography}
+
 \end{frame}
 
 % --------------------
