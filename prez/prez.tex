@@ -1,8 +1,12 @@
+%!TEX encoding = UTF-8 Unicode
+
 %\documentclass[14pt]{beamer}
 \documentclass{beamer}
 
 \usepackage{listings}
 \usepackage{cpp}
+% \usepackage{tikz}
+\usepackage{pgf-pie}
 
 \usetheme{Copenhagen}
 % \usetheme{Boadilla}
@@ -86,7 +90,7 @@ Alkalmazási területek
 \bigskip
 
 \begin{center}
-\includegraphics[scale=0.25]{kepek/instasnapmess.png}
+\includegraphics[scale=0.25]{kepek/muveszi_szurok/instasnapmess.png}
 \end{center}
 
 \end{frame}
@@ -96,11 +100,11 @@ Alkalmazási területek
 \frametitle{További példák}
 
 \begin{center}
-\includegraphics[scale=0.1]{kepek/prismawebcam.jpg}
+\includegraphics[scale=0.1]{kepek/muveszi_szurok/prismawebcam.jpg}
 \end{center}
 
 \begin{center}
-\includegraphics[scale=0.1]{kepek/jatekfilm.jpg}
+\includegraphics[scale=0.1]{kepek/muveszi_szurok/jatekfilm.jpg}
 \end{center}
 
 \end{frame}
@@ -114,12 +118,21 @@ Alkalmazási területek
 \begin{itemize}
 \item Átlagoló szűrő
 \item Gauss szűrő
-\item Medián szűrő
 \item Kétoldali szűrő
+\item Medián szűrő
+$$M =
+\begin{bmatrix}
+54 &25  &32 \\ 
+17 &37  &22 \\ 
+11 &23  &45 
+\end{bmatrix}$$
+Nagyság szerint sorba rendezve ezeket az értékeket, úgy hogy  11, 17, 22, 23, 25, 32, 37, 45, 54 akkor a pixel új intenzitása 25 lesz, mivel az a középső érték a sorban.
 \end{itemize}
+\end{frame}
 
-\bigskip
-
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Matematikai eszközök}
 \textbf{Élkiemelés}
 
 \begin{itemize}
@@ -138,7 +151,7 @@ G_y =
 -1&-2  &-1 \\ 
 0&0  &0 \\ 
 1&2  &1 
-\end{bmatrix}.
+\end{bmatrix}
 $$
 \item Laplace éldetektálás
 \item Canny éldetektálás
@@ -174,7 +187,7 @@ A cél a megfelelő globális és lokális küszöbértékek meghatározása.
 \begin{frame}[fragile]
 \frametitle{Szűrő algoritmusok}
 
-Saját készítésű művészi szűrők
+\textbf{Saját készítésű művészi szűrők}
 
 \begin{itemize}
 \item Cartoon-style filter
@@ -188,26 +201,108 @@ Saját készítésű művészi szűrők
 % --------------------
 \begin{frame}[fragile]
 \frametitle{Cartoon-style filter}
+\begin{center}
+\textbf{Eredeti kép}
+\includegraphics[scale=0.42]{kepek/cartoon_style/image.jpg}
+\end{center}
+\end{frame}
 
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Cartoon-style filter}
+\begin{center}
+\textbf{A Gauss-piramisban kicsinyítés és nagyítás, valamint a kétoldalú szűrő}
+\includegraphics[scale=0.42]{kepek/cartoon_style/pyrambilateral.jpg}
+\end{center}
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Cartoon-style filter}
+\begin{center}
+\textbf{Szürkeárnyalatossá alakított kép, medián szűrő}
+\includegraphics[scale=0.42]{kepek/cartoon_style/graymedian.jpg}
+\end{center}
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Cartoon-style filter}
+\begin{center}
+\textbf{Adaptív küszöbölés az élek kiemelésére}
+\includegraphics[scale=0.42]{kepek/cartoon_style/threshold.jpg}
+\end{center}
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Cartoon-style filter}
+\begin{center}
+\textbf{A szűrökkel és küszöböléssel előállított kép, azaz a Cartoon-Style filter}
+\includegraphics[scale=0.42]{kepek/cartoon_style/Cartoon_filter.jpg}
+\end{center}
 \end{frame}
 
 % --------------------
 \begin{frame}[fragile]
 \frametitle{Pencil sketch filter}
+\begin{center}
+\textbf{Eredeti kép}
+\includegraphics[scale=0.42]{kepek/pencil_sketch/image.jpg}
+\end{center}
+\end{frame}
 
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Pencil sketch filter}
+\begin{center}
+\textbf{Szürkeárnyalatossá alakított kép, medián szűrő}
+\includegraphics[scale=0.42]{kepek/pencil_sketch/mediangray.jpg}
+\end{center}
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Pencil sketch filter}
+\begin{center}
+\textbf{Gauss szűrő}
+\includegraphics[scale=0.42]{kepek/pencil_sketch/gauss.jpg}
+\end{center}
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Pencil sketch filter}
+\begin{center}
+\textbf{A két szűrő elosztása, kontraszt széthúzás}
+\includegraphics[scale=0.42]{kepek/pencil_sketch/contraststrech.jpg}
+\end{center}
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Pencil sketch filter}
+\begin{center}
+\textbf{Vászon hozzáadása, Pencil sketch filter}
+\includegraphics[scale=0.42]{kepek/pencil_sketch/pencil_sketch.jpg}
+\end{center}
 \end{frame}
 
 % --------------------
 \begin{frame}[fragile]
 \frametitle{Cartoon filter}
-
+\begin{center}
+\includegraphics[scale=0.23]{kepek/cartoon/3_cartoon_filter2.jpg}
+\end{center}
 \end{frame}
 
 
 % --------------------
 \begin{frame}[fragile]
 \frametitle{Aquarelle-style filter}
-
+\begin{center}
+\includegraphics[scale=0.23]{kepek/aquarelle_style/4_paint_filter.jpg}
+\end{center}
 \end{frame}
 
 % --------------------
@@ -236,6 +331,28 @@ medianBlur(source, median, kernel_size);
 \end{cpp}
 
 \begin{itemize}
+\item Élkiemelés
+\end{itemize}
+
+\begin{cpp}
+Laplacian(source, edges, CV_8U, kernel);
+\end{cpp}
+
+\end{frame}
+
+% --------------------
+\begin{frame}[fragile]
+\frametitle{Implementáció}
+
+
+\begin{itemize}
+\item Szegmentálás
+\end{itemize}
+\begin{cpp}
+pyrMeanShiftFiltering(source, result, sp, sr);
+\end{cpp}
+
+\begin{itemize}
 \item Küszöbölés
 \end{itemize}
 
@@ -243,8 +360,8 @@ medianBlur(source, median, kernel_size);
 threshold(src, res, thr, maxval, THRESH_BINARY_INV);
 \end{cpp}
 
-\end{frame}
 
+\end{frame}
 
 % --------------------
 \begin{frame}[fragile]
@@ -262,13 +379,46 @@ threshold(src, res, thr, maxval, THRESH_BINARY_INV);
 % --------------------
 \begin{frame}[fragile]
 \frametitle{Cartoon-style filter számítási ideje}
-
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\pie[text=legend, sum=113.229]{
+    4.795/képbetöltés (4.795 ms),
+    48.967/ablak létrehozása (48.967 ms),
+    1.114/Gauss-piramis down szűrő (1.114 ms),
+    22.23/bilateral filter (22.23 ms),
+    1.387/Gauss piramis up szűrő (1.387 ms),
+    8.844/szürkeárnyalatosítás (8.844 ms),
+    1.077/küszöbölés (1.077 ms),
+    2.813/színesre konvertálás (2.813 ms),
+    21.723/kép mentése és megjelenítése (21.723 ms)
+}
+\end{tikzpicture}
+Cartoon style filter alkalmazásának időigénye (összesen 113.229 ms)
+\label{fig:pie1}
+\end{figure}
 \end{frame}
 
 % --------------------
 \begin{frame}[fragile]
 \frametitle{Pencil sketch számítási ideje}
-
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\pie[text=legend, sum=93.661]{
+    9.775/képbetöltés (9.775 ms),
+    51.585/ablak létrehozása (51.585 ms),
+    1.495/szürkeárnyalatosítás és medián szűrő (1.495 ms),
+    9.691/Gauss szűrő (9.691 ms),
+    0.476/Gauss szűrt és medián szűrt kép osztása (0.476 ms),
+    0.168/kontraszt széthúzása (0.168 ms),
+    2.793/vászon és szűrt kép szorzása (2.793 ms),
+    17.503/kép mentése és megjelenítése (17.503 ms)
+}
+\end{tikzpicture}
+Pencil sketch filter alkalmazásának időigénye (összesen 93.661 ms)
+\label{fig:pie2}
+\end{figure}
 \end{frame}
 
 % --------------------
@@ -281,16 +431,15 @@ threshold(src, res, thr, maxval, THRESH_BINARY_INV);
 \begin{frame}[fragile]
 \frametitle{Hivatkozások}
 
-1
+[1] Papari, Giuseppe, Nicolai Petkov, and Patrizio Campisi. Artistic edge and corner enhancing smoothing. IEEE Transactions on Image Processing 16.10 (2007): 2449- 2462.\\
 
-12
+[2] Kató Zoltán: Digitális képfeldolgozás, egyetemi kurzus, Szegedi Tudományegye- tem,http://www.inf.u-szeged.hu/ kato/teaching/DigitalisKepfeldolgozasTG, 2014.\\
 
-15
+[3] Michael Beyeler: How to create a cool cartoon effect with OpenCV and Python, http://www.askaswiss.com/2016/01/ how-to-create-cartoon-effect-opencv-python.html, 2016. január 5.\\
 
-16
+[4]Michael Beyeler: How to create a beautiful pencil sketch effect with OpenCV and Python, http://www.askaswiss.com/2016/01/ how-to-create-pencil-sketch-opencv-python.html, 2016. január 13.\\
 
-17
-
+[5] Shervin Emami: Mastering OpenCV with Practical Computer Vision Projects, Packt Publishing, 2012.
 \end{frame}
 
 % --------------------
