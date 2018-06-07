@@ -69,7 +69,7 @@
 
 \title[Alternatív grafikus megjelenítési módok]{Alternatív grafikus megjelenítési módok}
 \author[Vécsi Ádám]{\textbf{Vécsi Ádám}}
-\institute[]{Miskolci Egyetem}
+\institute[]{Gazdaságinformatikus (BSc)}
 \date{Miskolci Egyetem, 2018. június 12.}
 
 % --------------------
@@ -294,6 +294,11 @@ A cél a megfelelő globális és lokális küszöbértékek meghatározása.
 \frametitle{Cartoon filter}
 \begin{center}
 \includegraphics[scale=0.23]{kepek/cartoon/3_cartoon_filter2.jpg}
+\begin{itemize}
+\item Medián szűrő
+\item Laplace éldetektálás
+\item Küszöbölés
+\end{itemize}
 \end{center}
 \end{frame}
 
@@ -303,6 +308,10 @@ A cél a megfelelő globális és lokális küszöbértékek meghatározása.
 \frametitle{Aquarelle-style filter}
 \begin{center}
 \includegraphics[scale=0.23]{kepek/aquarelle_style/4_paint_filter.jpg}
+\begin{itemize}
+\item Átlagoló szűrő
+\item Mean shift szegmentálás
+\end{itemize}
 \end{center}
 \end{frame}
 
@@ -408,7 +417,8 @@ threshold(src, res, thr, maxval, THRESH_BINARY_INV);
 }
 \end{tikzpicture}
 } \\
-Cartoon style filter alkalmazásának időigénye (összesen 113.229 ms)
+Cartoon style filter alkalmazásának időigénye \\
+(összesen 113.229 ms)
 \label{fig:pie1}
 \end{figure}
 \end{frame}
@@ -432,7 +442,8 @@ Cartoon style filter alkalmazásának időigénye (összesen 113.229 ms)
 }
 \end{tikzpicture}
 } \\
-Pencil sketch filter alkalmazásának időigénye (összesen 93.661 ms)
+Pencil sketch filter alkalmazásának időigénye \\
+(összesen 93.661 ms)
 \label{fig:pie2}
 \end{figure}
 \end{frame}
